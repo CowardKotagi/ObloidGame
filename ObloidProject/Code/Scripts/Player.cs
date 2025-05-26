@@ -23,7 +23,7 @@ public partial class Player : CharacterBody3D {
 	float velocityLength;
 	Vector2 moveInput;
 	Vector3 wishDirection;
-	Vector3 gravity = new Godot.Vector3(0, -0.6f, 0);
+	Vector3 gravity = new Godot.Vector3(0, -0.4f, 0);
 	float runSpeed = 20f;
     float acceleration = 2.5f;
     // State
@@ -45,12 +45,12 @@ public partial class Player : CharacterBody3D {
 	MovementStates movementState = MovementStates.Idle;
 
 	public override void _Ready() {
-		PlayerModel = GetNode<Node3D>("Human_Male");
+		PlayerModel = GetNode<Node3D>("Nun");
 		CollisionShape = GetNode<CollisionShape3D>("CollisionShape3D");
 		GroundRayCast = GetNode<RayCast3D>("GroundRayCast");
         GunshotAudio = GetNode<AudioStreamPlayer3D>("GunShotAudio");
         Barrel = GetNode<Marker3D>("Barrel");
-        AnimationPlayer = GetNode<AnimationPlayer>("Human_Male/AnimationPlayer");
+        AnimationPlayer = GetNode<AnimationPlayer>("Nun/AnimationPlayer");
         if (Level is GameModeDungeon dungeon) {
         } else if (Level is GameModeOrphan orphan) {
         }
@@ -100,7 +100,7 @@ public partial class Player : CharacterBody3D {
 				Move();
 				break;
 			case MovementStates.Fall:
-                AnimationPlayer.Play("Walk");
+                AnimationPlayer.Play("Fall");
 				if (IsOnFloor()) {
                     movementState = moveInput.Length() < 0.01 && Velocity.Length() < 1 ? MovementStates.Idle : MovementStates.Run;
                 }

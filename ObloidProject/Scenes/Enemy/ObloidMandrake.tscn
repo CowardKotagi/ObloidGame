@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvu1qqr0unsss"]
+[gd_scene load_steps=11 format=3 uid="uid://cvu1qqr0unsss"]
 
 [ext_resource type="Script" uid="uid://247uhuala02k" path="res://Code/Scripts/ObloidMandrake.cs" id="1_jtoo3"]
 
@@ -6,6 +6,26 @@
 bounce = 0.6
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_sctmj"]
+
+[sub_resource type="Animation" id="Animation_jtoo3"]
+resource_name = "Idle"
+
+[sub_resource type="Animation" id="Animation_tpuhk"]
+resource_name = "Run"
+
+[sub_resource type="Animation" id="Animation_180xg"]
+resource_name = "Fall"
+
+[sub_resource type="Animation" id="Animation_o54w5"]
+resource_name = "Die"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o54w5"]
+_data = {
+&"Die": SubResource("Animation_o54w5"),
+&"Fall": SubResource("Animation_180xg"),
+&"Idle": SubResource("Animation_jtoo3"),
+&"Run": SubResource("Animation_tpuhk")
+}
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4te2q"]
 
@@ -24,6 +44,11 @@ script = ExtResource("1_jtoo3")
 [node name="ObloidMandrakeModel" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_sctmj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ObloidMandrakeModel"]
+libraries = {
+&"": SubResource("AnimationLibrary_o54w5")
+}
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)

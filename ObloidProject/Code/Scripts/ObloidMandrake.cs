@@ -125,14 +125,14 @@ public partial class ObloidMandrake: RigidBody3D  {
                 }
                 break;
             case MovementState.Fall:
-                AnimationPlayer.Play("Jump");
+                AnimationPlayer.Play("Fall");
                 
                 if (Grounded) {
                     movementState = wishDirection.Length() > 0.1f ? MovementState.Run : MovementState.Idle;
                 }
                 break;
             case MovementState.Die:
-                AnimationPlayer.Play("Stop");
+                AnimationPlayer.Play("Die");
                 AxisLockAngularX = false;
                 AxisLockAngularY = false;
                 AxisLockAngularZ = false;

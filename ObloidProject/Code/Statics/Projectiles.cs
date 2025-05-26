@@ -19,7 +19,7 @@ public static class Projectile {
         projectile.GlobalPosition -= projectile.GlobalTransform.Basis.Z.Normalized() * projectileSpeedModifier;
         if (projectile.GetChildCount() > 1 && projectile.GetChild(1) is RayCast3D rayCast) {
             if (rayCast.IsColliding() && rayCast.GetCollider() is not CharacterBody3D) {
-                Explode(rayCast.GetCollisionPoint(), 10f, 20f, levelInstance);
+                Explode(rayCast.GetCollisionPoint(), 10f, 10f, levelInstance);
                 projectile.QueueFree();
             }
         }
