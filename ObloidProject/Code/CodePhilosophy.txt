@@ -1,0 +1,95 @@
+Programming Problem Solving Guide (Procedural / Anti-OOP Inspired)
+I. Overall Philosophy
+Design code in terms of modules, not objects.
+Favor explicitness, clarity, and direct state handling. Avoid speculative generalization, over-abstraction, or unnecessary patterns.
+
+II. Define Problem Domain Clearly
+Describe the problem in natural language.
+
+List required inputs and outputs.
+
+Identify constraints, edge cases, and invariants.
+
+Identify the high-level state being manipulated (e.g., files, UI buffers, entities in memory).
+
+“Understand the hardware. Understand the problem.” – Mike Acton
+
+III. Split Responsibilities into Modules
+A. Module Types
+Logic Modules:
+Pure(ish) functions. No internal state. Only act on passed-in data. No global access, no I/O, no dependencies.
+
+State Modules:
+Hold and mutate state. Own system resources (files, buffers, sockets). Manage lifecycle of state.
+
+B. Rules
+Logic modules never call into state modules.
+
+State modules may call into logic modules.
+
+All functions declare what they read/write/modify.
+
+IV. Data Management
+Define data structures globally, not inside modules.
+
+Treat data as dumb, regular structs (struct/record) with no attached methods.
+
+Allow state modules to operate on these structs, or pass them to logic modules for computation.
+
+"Data-oriented programming is about data first, not code." – Mike Acton
+"Types are the joints in your program." – Casey Muratori
+
+V. Keep Code Flat, Explicit, and Direct
+Avoid call hierarchies that hide behavior.
+
+Keep data flows traceable from top-level functions.
+
+Avoid callbacks, virtual methods, or DI containers unless necessary.
+
+Prefer function composition over inheritance or interface chains.
+
+"When you look at code, it should be obvious what it does." – Jonathan Blow
+"Avoid cleverness. Be direct." – John Carmack
+
+VI. Avoid Speculative Generalization
+Don't create base classes or interfaces "just in case."
+
+Generalize only when duplication becomes a problem in at least 2-3 places.
+
+Build concrete solutions to real problems; refactor later only if there's a clear pattern.
+
+VII. Naming, Interfaces, and Isolation
+Each module exposes a small public API.
+
+Internals are private unless truly useful elsewhere.
+
+Interface types (like traits or typeclasses) are only used across module or team boundaries.
+
+Use simple, descriptive names; avoid cute acronyms or vague verbs like Process or Handle.
+
+VIII. When to Split Modules
+To reduce internal complexity.
+
+To support clear team boundaries.
+
+To decouple logic/state.
+
+To expose APIs while hiding internals.
+
+Not just to follow arbitrary size or class-count rules.
+
+IX. Debuggability and Maintainability
+Favor single-point-of-truth data.
+
+Prefer single large files over fractured folders/classes when appropriate.
+
+Reduce indirection. Avoid multi-level abstraction towers.
+
+X. Tooling and Practical Tips
+Structure code to be grep-able.
+
+Make debug logs and assertions obvious and useful.
+
+Use compile-time constructs to enforce invariants (e.g., const, enum, type-safe IDs).
+
+Prefer fewer dependencies. Prefer no frameworks unless essential.

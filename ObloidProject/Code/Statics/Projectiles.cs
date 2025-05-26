@@ -4,8 +4,8 @@ using System;
 using Obloid.Code.Scripts.CustomNodes;
 
 public static class Projectile {
-    public static void SpawnProjectile(PackedScene rocketScene, Node parent, Vector3 targetPosition, Vector3 spawnPosition, CollisionObject3D excludeNode) {
-        Node3D rocketInstance = (Node3D)rocketScene.Instantiate();
+    public static void SpawnProjectile(PackedScene projectileScene, Node parent, Vector3 targetPosition, Vector3 spawnPosition, CollisionObject3D excludeNode) {
+        Node3D rocketInstance = (Node3D)projectileScene.Instantiate();
         parent.AddChild(rocketInstance);
         rocketInstance.LookAtFromPosition(spawnPosition, targetPosition);
         RayCast3D rayCast = rocketInstance.GetChild(1) as RayCast3D;

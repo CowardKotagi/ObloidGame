@@ -1,0 +1,101 @@
+# CODING STANDARDS — **Procedural, Pragmatic, and Performant**
+
+## KEY FORMATTING RULES
+
+* **Braces**: K\&R style (opening brace on the same line)
+* **Tabs**: Always use tabs (set width to 4 spaces)
+* **Line Length**: Be practical; avoid horizontal scrolling, but do not obsess over line limits
+
+## NAMING CONVENTIONS
+
+| Element       | Convention   | Example                 |
+| ------------- | ------------ | ----------------------- |
+| Variables     | `camelCase`  | `playerSpeed`           |
+| Functions     | `PascalCase` | `CalculateTrajectory()` |
+| Constants     | `UPPER_CASE` | `MAX_ENTITIES`          |
+| Structs/Enums | `PascalCase` | `GameEntity`, `State`   |
+| Files         | `snake_case` | `physics_engine.c`      |
+
+---
+
+## DESIGN PHILOSOPHY
+
+### 1. **Procedural Over Object-Oriented**
+
+* Write **pure procedures** that operate on data passed in. No hidden context. No reliance on global state or class members.
+* Avoid methods attached to data. Favor `DoThing(data)` over `data.DoThing()`.
+* Brian Will’s **logic vs. state module** split is a central tenet:
+
+  * **Logic Modules**: No internal state. Only act on explicitly passed-in data.
+  * **State Modules**: Own and protect state. Call logic modules, but not vice versa.
+
+> *Inspired by Jonathan Blow & Brian Will: state must be minimized and clearly visible. Structure code around data and behavior, not hierarchies.*
+
+---
+
+### 2. **Abstractions Are Earned, Not Assumed**
+
+* Avoid speculative abstractions. Favor concrete, repeated code over premature generalization.
+* Abstract **only** when:
+
+  * It reduces duplication across multiple real usages.
+  * It’s proven to simplify rather than obscure.
+
+> *Casey Muratori & Jonathan Blow repeatedly stress the **cost of abstraction**. Don’t hide logic behind leaky interfaces.*
+
+---
+
+### 3. **Modularity Is About Boundaries, Not Size**
+
+* Modules should group by **functionality**, not by arbitrary class or object structures.
+* Large modules are **allowed** if they have coherent internal structure.
+* **Avoid micro-modules** and fractal architecture.
+
+> *Mike Acton: Data should drive the architecture. Small units for their own sake lead to disjointed code and cache-unfriendly layouts.*
+
+---
+
+## ANTI-PATTERNS TO AVOID
+
+|   Anti-Pattern                            |  Alternative                        |
+| ----------------------------------------- | ------------------------------------ |
+| Object.method() that hides control flow   | `Function(object)` with clear logic  |
+| Virtual methods / dynamic dispatch        | Function pointers, direct branching  |
+| Overuse of small classes / interfaces     | Flat modules with simple data        |
+| Law of Demeter / "tell don't ask" cultism | Ask directly — clarity over ideology |
+| "Service" suffixes, excessive layers      | Simpler nouns, fewer layers          |
+| Design patterns as first-class citizens   | Prefer real-world problem solving    |
+
+---
+
+## 📦 STRUCTURES & DATA
+
+* Use **plain C-style structs** — no behavior inside.
+* Do not encapsulate logic inside data holders.
+* Mutate data explicitly; make changes visible and traceable.
+* Prefer value types over heap allocations unless necessary.
+
+```c
+// ✅ Clear procedural handling
+struct Enemy {
+	int hp;
+	int type;
+};
+
+if (IsDead(enemy)) {
+	HandleDeath(enemy);
+}
+
+## FLOW CONTROL & FUNCTION STRUCTURE
+
+* Long functions are **fine** if they’re clear.
+* Extract sub-functions **only** if:
+
+  * They’re reused elsewhere
+  * They improve clarity (not just to shorten)
+
+
+## COMMENTS & DOCUMENTATION
+
+* Comment **why**, not **how**. Code should be self-explanatory in what it does.
+* Document module boundaries and expectations, especially for side effects.

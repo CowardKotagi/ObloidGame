@@ -6,6 +6,12 @@ using System;
 using System.Linq;
 
 public partial class GameModeDungeon : Node3D {
+    public Node EnvironmentNode;
+    public Node EntitiesNode;
+    public Node UINode;
+
+
+    [Export] public bool timeAdvance = true;
     public Player[] Players; 
     public ObloidMandrake[] Enemies;
     public Node3D[] Entities;
@@ -27,8 +33,12 @@ public partial class GameModeDungeon : Node3D {
     }
 
     public override void _Ready() {
+        EnvironmentNode = this.HasNode("Environment") ? GetNode("Environment") : null;
+        EntitiesNode = this.HasNode("Entities") ? GetNode("Entities") : null;
+        UINode = this.HasNode("UI") ? GetNode("UI") : null;
+
         ObloidGame.CurrentScene = this;
-        Sun = GetNode<DirectionalLight3D>("Environment/DirectionalLight3D");
+        this.Sun = GetNode<DirectionalLight3D>("Environment/DirectionalLight3D");
         clockLabel = GetNode<Label>("UI/Clock");
         melonsLabel = GetNode<Label>("UI/Melons");
         Entities = GetEntitiesOfType<Node3D>(this);
@@ -43,7 +53,9 @@ public partial class GameModeDungeon : Node3D {
     
     public override void _PhysicsProcess(double delta) {
         HandleTime(delta, GetTree());
-        HandleUI(clockLabel, melonsLabel);
+        if (UINode != null) {
+            HandleUI(clockLabel, melonsLabel);
+        }
         if (Input.IsActionJustPressed("Menu")) {
             GD.Print("Menu");
             Input.MouseMode = Input.MouseMode == Input.MouseModeEnum.Captured ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Captured;
