@@ -1,0 +1,43 @@
+{
+  "dialogues": 
+  {
+	"intro": 
+	{
+	  "id": "intro",
+	  "text": "Welcome Father! Do you have the Obloids for the children ?",
+	  "speaker": "Sister Nunya biznis",
+	  "choices": 
+	  [
+		{
+		  "text": "Yes, I have it.",
+		  "next_id": "has_key",
+		  "condition": { "item": "Key" }
+		},
+		{
+		  "text": "No, I don't.",
+		  "next_id": "no_key"
+		}
+	  ]
+	},
+	
+	"has_key": 
+	{
+	  "id": "has_key",
+	  "text": "Great! Let's proceed.",
+	  "speaker": "NPC1",
+	  "next_id": "exit"
+	},
+	
+	"no_key": 
+	{
+	  "id": "no_key",
+	  "text": "Come back when you have it.",
+	  "speaker": "NPC1" 
+	},
+	
+	"exit": 
+	{
+	  "end": true
+	}
+  }
+}

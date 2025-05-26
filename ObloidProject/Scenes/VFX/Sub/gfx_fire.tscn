@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpydcce8if4wg"]
+
+[ext_resource type="Shader" uid="uid://bw5c1furadvc" path="res://Shaders/VFXFire.tres" id="1_ddr4u"]
+[ext_resource type="Texture2D" uid="uid://dnmgu0skl041w" path="res://Resources/VFX/Vornoi.jpg" id="1_k7uoi"]
+[ext_resource type="Texture2D" uid="uid://d150gcig06vdv" path="res://Resources/VFX/Flame2.png" id="3_h670n"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k7uoi"]
+gravity = Vector3(0, 0, 0)
+color = Color(4, 1.25, 0.6, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qmbqs"]
+render_priority = 0
+shader = ExtResource("1_ddr4u")
+shader_parameter/FireTexture = ExtResource("3_h670n")
+shader_parameter/Dissolve_Tile = Vector2(0.1, 0.1)
+shader_parameter/DissolveSpeed = Vector2(0, 0.2)
+shader_parameter/Dissolve = ExtResource("1_k7uoi")
+shader_parameter/Dissolve_Scale = 0.566
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_si7k6"]
+material = SubResource("ShaderMaterial_qmbqs")
+orientation = 2
+
+[node name="GFX_Fire" type="Node3D"]
+
+[node name="Base" type="GPUParticles3D" parent="."]
+amount = 1
+process_material = SubResource("ParticleProcessMaterial_k7uoi")
+draw_pass_1 = SubResource("PlaneMesh_si7k6")

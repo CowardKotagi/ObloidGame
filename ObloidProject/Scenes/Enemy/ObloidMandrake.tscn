@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvu1qqr0unsss"]
+
+[ext_resource type="Script" uid="uid://247uhuala02k" path="res://Code/Scripts/ObloidMandrake.cs" id="1_jtoo3"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xbppq"]
+bounce = 0.6
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sctmj"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4te2q"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_7l7xe"]
+radius = 1.0
+height = 2.0
+
+[node name="ObloidMandrake" type="RigidBody3D" groups=["Targetable"]]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_xbppq")
+script = ExtResource("1_jtoo3")
+
+[node name="ObloidMandrakeModel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_sctmj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_4te2q")
+
+[node name="GroundRayCast" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+target_position = Vector3(0, -2, 0)
+hit_from_inside = true
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="testball" type="MeshInstance3D" parent="."]
+top_level = true
+visible = false
+mesh = SubResource("SphereMesh_7l7xe")

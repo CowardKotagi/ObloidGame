@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://cfptfk8b3olof"]
+
+[ext_resource type="PackedScene" uid="uid://basuvuuk646m3" path="res://Resources/Models/Enviornment/CaveFloor_Test.fbx" id="1_ok7wn"]
+[ext_resource type="Shader" uid="uid://cu36j15qt2lbm" path="res://Shaders/TerrainBlend.gdshader" id="2_ilry4"]
+[ext_resource type="Texture2D" uid="uid://r60c3ls2mtee" path="res://Resources/Textures/Env/Substance_graph_basecolor_alt.png" id="3_141lh"]
+[ext_resource type="Texture2D" uid="uid://db62m0qdg1yud" path="res://Resources/Textures/Env/Substance_graph_basecolor.png" id="4_yme6t"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_myqk0"]
+render_priority = 0
+shader = ExtResource("2_ilry4")
+shader_parameter/Red_Vector = ExtResource("4_yme6t")
+shader_parameter/FirstTint = Color(1, 1, 1, 1)
+shader_parameter/FirstTextureScale = 2.105
+shader_parameter/Green_Texture = ExtResource("3_141lh")
+shader_parameter/SecondTint = Color(0.719076, 0.719076, 0.719076, 1)
+shader_parameter/SecondTextureScale = 1.0
+shader_parameter/ThirdTint = Color(0, 0, 0, 1)
+shader_parameter/ThirdTextureScale = 0.0
+shader_parameter/Darken = 3.92
+
+[node name="CaveFloor_Test" instance=ExtResource("1_ok7wn")]
+
+[node name="Plane_003" parent="." index="0"]
+surface_material_override/0 = SubResource("ShaderMaterial_myqk0")

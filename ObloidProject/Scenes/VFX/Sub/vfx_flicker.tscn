@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://btq6ex36vxavr"]
+
+[ext_resource type="Shader" uid="uid://bw5c1furadvc" path="res://Shaders/VFXFire.tres" id="1_oy35p"]
+[ext_resource type="Texture2D" uid="uid://dnmgu0skl041w" path="res://Resources/VFX/Vornoi.jpg" id="2_fkihc"]
+[ext_resource type="Texture2D" uid="uid://bn81bm3m6o56j" path="res://Resources/VFX/Flame3.png" id="3_up5wf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_guewl"]
+render_priority = 0
+shader = ExtResource("1_oy35p")
+shader_parameter/FireTexture = ExtResource("3_up5wf")
+shader_parameter/Dissolve_Tile = Vector2(0, 0)
+shader_parameter/DissolveSpeed = Vector2(0, 0)
+shader_parameter/Dissolve = ExtResource("2_fkihc")
+shader_parameter/Dissolve_Scale = 0.0
+
+[sub_resource type="Curve" id="Curve_oy35p"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.485714, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_fkihc"]
+curve = SubResource("Curve_oy35p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yu1xl"]
+emission_shape = 1
+emission_sphere_radius = 0.28
+angle_min = -360.0
+angle_max = 360.0
+inherit_velocity_ratio = -1.505
+gravity = Vector3(0, 5, 0)
+damping_min = 0.5
+damping_max = 1.0
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_fkihc")
+color = Color(4.01176, 1.2549, 0.623529, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_waven"]
+
+[node name="VFX_Flicker" type="Node3D"]
+
+[node name="Flickers" type="GPUParticles3D" parent="."]
+material_override = SubResource("ShaderMaterial_guewl")
+amount = 20
+lifetime = 0.96
+process_material = SubResource("ParticleProcessMaterial_yu1xl")
+draw_pass_1 = SubResource("QuadMesh_waven")

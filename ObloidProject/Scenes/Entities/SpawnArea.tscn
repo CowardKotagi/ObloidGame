@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ngop1mwnr0pm"]
+
+[ext_resource type="Script" uid="uid://bxcjq6mh7gplo" path="res://Code/Scripts/CustomNodes/ObjectSpawner.cs" id="1_5o767"]
+
+[node name="SpawnLocation" type="Node3D"]
+script = ExtResource("1_5o767")
+metadata/_custom_type_script = "uid://bxcjq6mh7gplo"

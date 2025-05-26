@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://snb57nmgblek"]
+
+[ext_resource type="Shader" uid="uid://bkqqf0isnmn0x" path="res://Shaders/StylizedWater.gdshader" id="1_utblh"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_plddj"]
+subdivide_width = 200
+subdivide_depth = 200
+orientation = 1
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q03b6"]
+render_priority = 0
+shader = ExtResource("1_utblh")
+
+[node name="WaterShader" type="MeshInstance3D"]
+cast_shadow = 0
+mesh = SubResource("QuadMesh_plddj")
+surface_material_override/0 = SubResource("ShaderMaterial_q03b6")

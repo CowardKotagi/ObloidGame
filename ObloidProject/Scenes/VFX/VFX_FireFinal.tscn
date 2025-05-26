@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://crvehok51ukt8"]
+
+[ext_resource type="PackedScene" uid="uid://bpydcce8if4wg" path="res://Scenes/VFX/Sub/gfx_fire.tscn" id="1_4h7rr"]
+[ext_resource type="PackedScene" uid="uid://btq6ex36vxavr" path="res://Scenes/VFX/Sub/vfx_flicker.tscn" id="1_hsbql"]
+
+[node name="FIRE" type="Node3D"]
+
+[node name="VFX_Flicker" parent="." instance=ExtResource("1_hsbql")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.010328, 0)
+
+[node name="GFX_Fire" parent="." instance=ExtResource("1_4h7rr")]
+transform = Transform3D(10.7346, 0, 0, 0, 7.54015, 0, 0, 0, 10.7346, 0, 0, 0)
