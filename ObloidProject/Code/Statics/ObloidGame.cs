@@ -7,7 +7,7 @@ public static class ObloidGame {
     public static float currentMinute = 0;
     public const int MAXIMUM_DAYS = 30;
     public const int MAXIMUM_MINUTES = 5;
-    public static int Mandrakes = 10;
+    public static int Roots = 10;
     public static int orphansFed = 0;
     public static dynamic CurrentScene;
     // allman to K&R find and replace:

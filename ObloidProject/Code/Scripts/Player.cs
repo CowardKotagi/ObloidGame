@@ -74,7 +74,6 @@ public partial class Player : CharacterBody3D {
             Shoot();
         }
         if (Input.IsActionJustPressed("Dodge") && canDodge) {
-            GD.Print("dodge");
             Dodge();
         }
 

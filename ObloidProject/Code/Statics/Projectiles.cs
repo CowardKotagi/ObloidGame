@@ -19,7 +19,7 @@ public static class Projectile {
         projectile.GlobalPosition -= projectile.GlobalTransform.Basis.Z.Normalized() * projectileSpeedModifier;
         if (projectile.GetChildCount() > 1 && projectile.GetChild(1) is RayCast3D rayCast) {
             if (rayCast.IsColliding() && rayCast.GetCollider() is not CharacterBody3D) {
-                Explode(rayCast.GetCollisionPoint(), 10f, 10f, levelInstance);
+                Explode(rayCast.GetCollisionPoint(), 10f, 22f, levelInstance);
                 projectile.QueueFree();
             }
         }
@@ -58,7 +58,7 @@ public static class Projectile {
                 rigidbody.ApplyImpulse((direction * power) * 4+ Vector3.Up * 10f);
             }
             if (entity is CharacterBody3D character) {
-                character.Velocity += direction * power + Vector3.Up * 16f;
+                character.Velocity += direction * power + Vector3.Up * power/1.6f;
             }
             if (entity is ObloidMandrake Obloid) {
                 Obloid.Health -= 32f;

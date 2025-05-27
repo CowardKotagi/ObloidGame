@@ -113,6 +113,7 @@ skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Geometry/NavigationRegion3D/StaticBody3D"]
 transform = Transform3D(0.0119347, 0, 0, 0, -1.42273e-09, -0.0119347, 0, 0.0119347, -1.42273e-09, 0, 2.53199e-08, 0.0135991)
+visible = false
 shape = SubResource("ConcavePolygonShape3D_owiqd")
 
 [node name="Props" type="Node" parent="."]
@@ -203,7 +204,7 @@ offset_bottom = 23.0
 grow_horizontal = 2
 horizontal_alignment = 1
 
-[node name="Melons" type="Label" parent="UI"]
+[node name="Roots" type="Label" parent="UI"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -214,3 +215,14 @@ offset_top = -23.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Label" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Controls:
+left click: shoot
+wasd: move
+space: teleport
+F: Interact
+Q & E: rotate camera
+C: switch camera mode"

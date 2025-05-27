@@ -14,7 +14,7 @@
 | Functions     | `PascalCase` | `CalculateTrajectory()` |
 | Constants     | `UPPER_CASE` | `MAX_ENTITIES`          |
 | Structs/Enums | `PascalCase` | `GameEntity`, `State`   |
-| Files         | `snake_case` | `physics_engine.c`      |
+| Files         | `PascalCase` | `PhysicsEngine.c`      |
 
 ---
 

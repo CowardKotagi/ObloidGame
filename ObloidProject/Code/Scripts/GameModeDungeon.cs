@@ -21,7 +21,7 @@ public partial class GameModeDungeon : Node3D {
     float ProjectileSpeedModifier = 2f;
 
     Label clockLabel;
-    Label melonsLabel;
+    Label rootsLabel;
 
     /* We use _EnterTree() when _Ready() is not fast enough.
        That is to say, Ready executes in children first, then parents. So this "Ready" is the last thing to be ready.
@@ -40,7 +40,7 @@ public partial class GameModeDungeon : Node3D {
         ObloidGame.CurrentScene = this;
         this.Sun = GetNode<DirectionalLight3D>("Environment/DirectionalLight3D");
         clockLabel = GetNode<Label>("UI/Clock");
-        melonsLabel = GetNode<Label>("UI/Melons");
+        rootsLabel = GetNode<Label>("UI/Roots");
         Entities = GetEntitiesOfType<Node3D>(this);
         Input.MouseMode = Input.MouseModeEnum.Captured;
 
@@ -54,7 +54,7 @@ public partial class GameModeDungeon : Node3D {
     public override void _PhysicsProcess(double delta) {
         HandleTime(delta, GetTree());
         if (UINode != null) {
-            HandleUI(clockLabel, melonsLabel);
+            HandleUI(clockLabel, rootsLabel);
         }
         if (Input.IsActionJustPressed("Menu")) {
             GD.Print("Menu");
@@ -119,7 +119,7 @@ public partial class GameModeDungeon : Node3D {
                 Enemies = Enemies.Where(thisEnemy => thisEnemy != enemy).ToArray();
                 enemy.QueueFree();
                 if (character is Player) {
-                    Mandrakes++;
+                    Roots++;
                 }
             }
             if (character.IsInsideTree() && character.GlobalPosition.Length() > 1000f) {
@@ -132,7 +132,7 @@ public partial class GameModeDungeon : Node3D {
             ObloidMandrake enemy = Enemies[i];
             if (enemy.IsInsideTree() && enemy.GlobalPosition.Length() > 1000f) {
                 GD.Print("ENEMY OUT OF BOUNDS");
-                Mandrakes++;
+                Roots++;
                 Enemies = Enemies.Where(existingEnemy => existingEnemy != enemy).ToArray();
                 enemy.QueueFree();
             }

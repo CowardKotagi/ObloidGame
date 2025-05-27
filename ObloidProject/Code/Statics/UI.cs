@@ -4,6 +4,6 @@ using Godot;
 public static class UI {
     public static void HandleUI(Label clockLabel, Label melonsLabel) {
         clockLabel.Text = "Day: " + ObloidGame.currentDay + "\nHour: " + ObloidGame.currentMinute;
-        melonsLabel.Text = "Obloids: " + ObloidGame.Mandrakes;
+        melonsLabel.Text = "Roots: " + ObloidGame.Roots;
     }
 }

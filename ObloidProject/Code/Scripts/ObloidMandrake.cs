@@ -5,6 +5,8 @@ using static ObloidGame;
 public partial class ObloidMandrake: RigidBody3D  {
     // Object references
     Node3D PlayerModel;
+    MeshInstance3D LeavesModel;
+    MeshInstance3D ShellModel;
     CollisionShape3D CollisionShape;
     RayCast3D GroundRayCast;
     AnimationPlayer AnimationPlayer;
@@ -37,6 +39,8 @@ public partial class ObloidMandrake: RigidBody3D  {
 
     public override void _Ready() {
         PlayerModel = GetNode<Node3D>("ObloidMandrakeModel");
+        LeavesModel = GetNode<MeshInstance3D>("ObloidMandrakeModel/Armature/Skeleton3D/LeavesModel");
+        ShellModel = GetNode<MeshInstance3D>("ObloidMandrakeModel/Armature/Skeleton3D/ShellModel");
         CollisionShape = GetNode<CollisionShape3D>("CollisionShape3D");
         GroundRayCast = GetNode<RayCast3D>("GroundRayCast");
         AnimationPlayer = GetNode<AnimationPlayer>("ObloidMandrakeModel/AnimationPlayer");
@@ -44,7 +48,8 @@ public partial class ObloidMandrake: RigidBody3D  {
         Level = GetNode<GameModeDungeon>(GetTree().CurrentScene.GetPath());
         navigationOffset = (float)GD.RandRange(0, 5);
         navigationUpdateInterval = (int)GD.RandRange(2, 5);
-        
+        LeavesModel.Visible = false;
+
         spawnPosition = GlobalPosition;
     }
     
@@ -70,6 +75,8 @@ public partial class ObloidMandrake: RigidBody3D  {
         
         if (Health <= 0) {
             Health = 0;
+            LeavesModel.Visible = true;
+            ShellModel.Visible = false;
             movementState = MovementState.Die;
         }
         UpdateMovementState();

@@ -20,7 +20,7 @@ public static class Interactions  {
                 null,
                 () => {
                     ObloidGame.orphansFed += ObloidGame.orphansFed;
-                    ObloidGame.Mandrakes -= ObloidGame.Mandrakes;
+                    ObloidGame.Roots -= ObloidGame.Roots;
                     GD.Print("You donated all your Obloids! Orphans fed: " + ObloidGame.orphansFed);
                 }
             }
