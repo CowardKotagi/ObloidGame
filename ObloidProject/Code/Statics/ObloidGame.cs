@@ -8,12 +8,37 @@ public static class ObloidGame {
     public const int MAXIMUM_DAYS = 30;
     public const int MAXIMUM_MINUTES = 5;
     public static int Roots = 10;
-    public static int orphansFed = 0;
+    public static int Donations = 0;
+    public const int FADE_DURATION = 1;
     public static dynamic CurrentScene;
     // allman to K&R find and replace:
     // find ([^\r\n]+)\r?\n[ \t]*\{[ \t]*\r?\n
     // replace $1 {\n
     
+    
+    public static void ChangeScene(Node inputNode, ColorRect fadeRectangle, string scenePath) {
+        if (fadeRectangle == null) return;
+        Fade(fadeRectangle, 0f, 1f, FADE_DURATION);
+
+        Tween tween = fadeRectangle.GetTree().CreateTween();
+        tween.TweenInterval(FADE_DURATION);
+        tween.TweenCallback(Callable.From(() => {
+            inputNode.GetTree().ChangeSceneToFile(scenePath);
+        }));
+    }
+
+    public static void Fade(ColorRect inputColorRect, float fromAlpha, float toAlpha, float duration) {
+        if (inputColorRect == null) return;
+        inputColorRect.Visible = true;
+        var color = inputColorRect.Modulate;
+        color.A = fromAlpha;
+        inputColorRect.Modulate = color;
+        Tween tween = inputColorRect.GetTree().CreateTween();
+        tween.TweenProperty(inputColorRect, "modulate:a", toAlpha, duration)
+             .SetTrans(Tween.TransitionType.Linear)
+             .SetEase(Tween.EaseType.InOut);
+    }
+
     /// <summary>
     /// Casts a ray from inputStartPosition to InputEndPosition, optionally returning a property from the collision result such as a hitposition or normal.
     /// Returns false if no collision, true if collision and no property requested, or the property value. 
@@ -21,7 +46,8 @@ public static class ObloidGame {
     /// 1. Has a world in which to cast the ray.
     /// 2. Can be excluded from the raycast to avoid self-collision.
     /// </summary>
-    public struct RaycastHitInfo {
+    public struct RaycastHitInfo
+    {
         public Vector3 Position;
         public Vector3 Normal;
         public object Collider;

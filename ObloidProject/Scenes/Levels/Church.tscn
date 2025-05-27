@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=4 uid="uid://cluovgx7edli1"]
 
-[ext_resource type="Texture2D" uid="uid://bme5o2ixmexjj" path="res://Resources/Textures/ROCK06.png" id="1_662kk"]
-[ext_resource type="Script" uid="uid://dr807e4kthnv5" path="res://Code/Scripts/GameModeOrphan.cs" id="1_o4pu0"]
+[ext_resource type="Texture2D" uid="uid://cqw6x8ygjkjbs" path="res://Resources/Textures/ROCK06.png" id="1_662kk"]
+[ext_resource type="Script" uid="uid://b4lrpbwwolsqo" path="res://Code/Scripts/GameModeDungeon.cs" id="1_o4pu0"]
 [ext_resource type="PackedScene" uid="uid://dla6sfohbwjy" path="res://Scenes/Entities/DungeonEntrance.tscn" id="3_o4pu0"]
 [ext_resource type="PackedScene" uid="uid://oerasy70vlod" path="res://Scenes/Player/PlayerCamera.tscn" id="3_r53cu"]
 [ext_resource type="PackedScene" uid="uid://b0152rdnmr8og" path="res://Scenes/NPCS/NPCDonate.tscn" id="6_o4pu0"]
@@ -114,6 +114,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
 [node name="CameraBase" parent="Entities/Player" instance=ExtResource("3_r53cu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 
+[node name="Spawner" type="Node3D" parent="Entities"]
+
 [node name="UI" type="Node" parent="."]
 
 [node name="Clock" type="Label" parent="UI"]
@@ -123,7 +125,7 @@ offset_bottom = 23.0
 grow_horizontal = 2
 horizontal_alignment = 1
 
-[node name="Melons" type="Label" parent="UI"]
+[node name="Roots" type="Label" parent="UI"]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -134,3 +136,23 @@ offset_top = -23.0
 offset_right = 20.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="Label" type="Label" parent="UI"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Controls:
+left click: shoot
+wasd: move
+space: teleport
+F: Interact
+Q & E: rotate camera
+C: switch camera mode
+1: Light"
+
+[node name="BlackFade" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)

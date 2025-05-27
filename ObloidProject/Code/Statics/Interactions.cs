@@ -19,9 +19,9 @@ public static class Interactions  {
             Effects = new Action[] {
                 null,
                 () => {
-                    ObloidGame.orphansFed += ObloidGame.orphansFed;
+                    ObloidGame.Donations += ObloidGame.Donations;
                     ObloidGame.Roots -= ObloidGame.Roots;
-                    GD.Print("You donated all your Obloids! Orphans fed: " + ObloidGame.orphansFed);
+                    GD.Print("You donated all your Obloids! Orphans fed: " + ObloidGame.Donations);
                 }
             }
         },
@@ -34,7 +34,7 @@ public static class Interactions  {
             Effects = new Action[] {
                 null,
                 () => {
-                    ObloidGame.CurrentScene.GetTree().ChangeSceneToFile("res://Scenes/Levels/Church.tscn");
+                    ObloidGame.ChangeScene(ObloidGame.CurrentScene, ObloidGame.CurrentScene.GetNode<ColorRect>("UI/BlackFade"), "res://Scenes/Levels/Church.tscn");
                 }
             }
         },
@@ -47,7 +47,7 @@ public static class Interactions  {
             Effects = new Action[] {
                 null,
                 () => {
-                    ObloidGame.CurrentScene.GetTree().ChangeSceneToFile("res://Scenes/Levels/DungeonTest.tscn");
+                    ObloidGame.ChangeScene(ObloidGame.CurrentScene, ObloidGame.CurrentScene.GetNode<ColorRect>("UI/BlackFade"), "res://Scenes/Levels/DungeonTest.tscn");
                 }
             }
         },

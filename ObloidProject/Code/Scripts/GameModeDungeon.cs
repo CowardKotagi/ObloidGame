@@ -10,16 +10,14 @@ public partial class GameModeDungeon : Node3D {
     public Node EntitiesNode;
     public Node UINode;
 
-
     [Export] public bool timeAdvance = true;
-    public Player[] Players; 
+    public Player[] Players;
     public ObloidMandrake[] Enemies;
     public Node3D[] Entities;
 
     DirectionalLight3D Sun;
 
     float ProjectileSpeedModifier = 2f;
-
     Label clockLabel;
     Label rootsLabel;
 
@@ -43,6 +41,8 @@ public partial class GameModeDungeon : Node3D {
         rootsLabel = GetNode<Label>("UI/Roots");
         Entities = GetEntitiesOfType<Node3D>(this);
         Input.MouseMode = Input.MouseModeEnum.Captured;
+        
+        ObloidGame.Fade(GetNode<ColorRect>("UI/BlackFade"), 1, 0, ObloidGame.FADE_DURATION);
 
         var packedScene = GD.Load<PackedScene>("res://Scenes/Enemy/ObloidMandrake.tscn");
         var tempEnemies = SpawnEnemies(GetNode("Entities"), GetNode("Entities/Spawner"), packedScene);
@@ -50,7 +50,7 @@ public partial class GameModeDungeon : Node3D {
 
         Players[0].Level = this;
     }
-    
+
     public override void _PhysicsProcess(double delta) {
         HandleTime(delta, GetTree());
         if (UINode != null) {
