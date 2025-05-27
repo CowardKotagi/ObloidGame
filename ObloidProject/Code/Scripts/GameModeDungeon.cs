@@ -25,7 +25,7 @@ public partial class GameModeDungeon : Node3D {
        That is to say, Ready executes in children first, then parents. So this "Ready" is the last thing to be ready.
        but Entertree executes before ready */
 
-    public override void _EnterTree() {
+        public override void _EnterTree() {
         GD.Print("GameModeDungeon EnterTree");
         Players = GetEntitiesOfType<Player>(this);
     }
@@ -41,7 +41,7 @@ public partial class GameModeDungeon : Node3D {
         rootsLabel = GetNode<Label>("UI/Roots");
         Entities = GetEntitiesOfType<Node3D>(this);
         Input.MouseMode = Input.MouseModeEnum.Captured;
-        
+
         ObloidGame.Fade(GetNode<ColorRect>("UI/BlackFade"), 1, 0, ObloidGame.FADE_DURATION);
 
         var packedScene = GD.Load<PackedScene>("res://Scenes/Enemy/ObloidMandrake.tscn");
