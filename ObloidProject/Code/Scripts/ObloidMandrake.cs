@@ -12,7 +12,6 @@ public partial class ObloidMandrake: RigidBody3D  {
     RayCast3D GroundRayCast;
     AnimationPlayer AnimationPlayer;
     NavigationAgent3D NavigationAgent;
-    GameModeDungeon Level;
     // Movement properties
     float MoveForce = 1f;
     float JumpImpulse = 8f;
@@ -47,7 +46,6 @@ public partial class ObloidMandrake: RigidBody3D  {
         GroundRayCast = GetNode<RayCast3D>("GroundRayCast");
         AnimationPlayer = GetNode<AnimationPlayer>("ObloidMandrakeModel/AnimationPlayer");
         NavigationAgent = GetNode<NavigationAgent3D>("NavigationAgent3D");
-        Level = GetNode<GameModeDungeon>(GetTree().CurrentScene.GetPath());
         navigationOffset = (float)GD.RandRange(0, 5);
         navigationUpdateInterval = (int)GD.RandRange(2, 5);
         LeavesModel.Visible = false;
@@ -87,7 +85,7 @@ public partial class ObloidMandrake: RigidBody3D  {
     }
 
     private void UpdateAIState() {
-        float distanceToPlayer = (Level.Players[0].GlobalPosition - GlobalPosition).Length();
+        float distanceToPlayer = (CurrentScene.Players[0].GlobalPosition - GlobalPosition).Length();
 
         if(Health <= 15) { aiState = AIState.Panic; }
         if (distanceToPlayer <= chaseRadius) { aiState = AIState.Chase; }
@@ -106,10 +104,10 @@ public partial class ObloidMandrake: RigidBody3D  {
             }
             break;
         case AIState.Chase:
-            NavigationAgent.TargetPosition = Level.Players[0].GlobalPosition;
+            NavigationAgent.TargetPosition = CurrentScene.Players[0].GlobalPosition;
             break;
         case AIState.Panic:
-            Vector3 panicPosition = (GlobalPosition - Level.Players[0].GlobalPosition).Normalized();
+            Vector3 panicPosition = (GlobalPosition - CurrentScene.Players[0].GlobalPosition).Normalized();
             Vector3 panicTarget = GlobalPosition + panicPosition * wanderRadius;
             NavigationAgent.TargetPosition = panicTarget;
             break;

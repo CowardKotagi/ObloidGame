@@ -27,7 +27,6 @@ public partial class Player : CharacterBody3D {
     float acceleration = 2.5f;
     // State
     float Health = 64f;
-    float Spirit = 64f;
     float gunCharge;
 	bool isCharging;
     bool canShoot;

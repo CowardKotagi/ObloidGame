@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://cvu1qqr0unsss"]
+[gd_scene load_steps=20 format=4 uid="uid://cvu1qqr0unsss"]
 
 [ext_resource type="Script" uid="uid://247uhuala02k" path="res://Code/Scripts/ObloidMandrake.cs" id="1_jtoo3"]
 [ext_resource type="Texture2D" uid="uid://duijo5gr6ta4o" path="res://Resources/Textures/ObloidBody.png" id="2_o54w5"]
@@ -325,10 +325,6 @@ _data = {
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_4te2q"]
 
-[sub_resource type="SphereMesh" id="SphereMesh_7l7xe"]
-radius = 1.0
-height = 2.0
-
 [node name="ObloidMandrake" type="RigidBody3D" groups=["Targetable"]]
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -419,8 +415,3 @@ target_position = Vector3(0, -2, 0)
 hit_from_inside = true
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-
-[node name="testball" type="MeshInstance3D" parent="."]
-top_level = true
-visible = false
-mesh = SubResource("SphereMesh_7l7xe")

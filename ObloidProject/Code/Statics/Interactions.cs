@@ -1,7 +1,7 @@
 using System;
 using static ObloidGame;
+using static UI;
 using Godot;
-
 public struct InteractionData {
     public string npcName;
     public Action[] Effects;
@@ -13,13 +13,12 @@ public static class Interactions {
             npcName = "NPCDonate",
             Effects = new Action[] {
                 () => {
-                    GD.Print("thanks for ur Obloids i am now going to set ur ObloidGame.Obloids publicly accessible integer variable to 0");
+                    ShowDialogue(CurrentScene.dialogueBox, "NPCDonate", "What will you spare?", 2f);
                 },
                 () => {
-                    GD.Print("come back when u have more Obloids and look i can say multiple lines");
+                    ShowDialogue(CurrentScene.dialogueBox, "NPCDonate", "Thank you.", 2f);
                     ObloidGame.Donations += ObloidGame.Donations;
                     ObloidGame.Roots -= ObloidGame.Roots;
-                    GD.Print("You donated all your Obloids! Orphans fed: " + ObloidGame.Donations);
                 }
             }
         },
@@ -27,22 +26,16 @@ public static class Interactions {
             npcName = "ExitDungeonLadder",
             Effects = new Action[] {
                 () => {
-                    GD.Print("You are free! Only if you press me again..");
-                },
-                () => {
                     ObloidGame.ChangeScene(ObloidGame.CurrentScene, ObloidGame.CurrentScene.GetNode<ColorRect>("UI/BlackFade"), "res://Scenes/Levels/Church.tscn");
-                }
+                },
             }
         },
         new InteractionData {
             npcName = "DungeonEntrance",
             Effects = new Action[] {
                 () => {
-                    GD.Print("Are you sure you want to enter the dungeon? It is a dangerous place.");
+                    ObloidGame.ChangeScene(ObloidGame.CurrentScene, ObloidGame.CurrentScene.GetNode<ColorRect>("UI/BlackFade"), "res://Scenes/Levels/Church.tscn");
                 },
-                () => {
-                    ObloidGame.ChangeScene(ObloidGame.CurrentScene, ObloidGame.CurrentScene.GetNode<ColorRect>("UI/BlackFade"), "res://Scenes/Levels/DungeonTest.tscn");
-                }
             }
         },
     };
