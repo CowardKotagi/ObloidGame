@@ -46,8 +46,7 @@ public static class ObloidGame {
     /// 1. Has a world in which to cast the ray.
     /// 2. Can be excluded from the raycast to avoid self-collision.
     /// </summary>
-    public struct RaycastHitInfo
-    {
+    public struct RaycastHitInfo {
         public Vector3 Position;
         public Vector3 Normal;
         public object Collider;

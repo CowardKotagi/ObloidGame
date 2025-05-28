@@ -7,7 +7,6 @@ using static ObloidGame;
 
 public partial class Player : CharacterBody3D {
     // Foreign Object references
-    public dynamic Level;
     public PlayerCamera Camera;
     PackedScene rocketScene = ResourceLoader.Load<PackedScene>("res://Scenes/Player/Rocket.tscn");
     // Player object references
@@ -51,9 +50,6 @@ public partial class Player : CharacterBody3D {
         GunshotAudio = GetNode<AudioStreamPlayer3D>("GunShotAudio");
         Barrel = GetNode<Marker3D>("Barrel");
         AnimationPlayer = GetNode<AnimationPlayer>("Nun/AnimationPlayer");
-        if (Level is GameModeDungeon dungeon) {
-        } else if (Level is GameModeOrphan orphan) {
-        }
 	}
 
     public override void _PhysicsProcess(double delta) {
@@ -161,7 +157,7 @@ public partial class Player : CharacterBody3D {
     }
 
     private void Shoot() {
-        if (Level is not GameModeDungeon dungeon) { return; }
+        if (CurrentScene is not GameModeDungeon dungeon) { return; }
         Vector3 flingDirection = this.GlobalTransform.Basis.Z.Normalized();
         float maxPower = 25f;
         if (movementState == MovementStates.Fall) {
@@ -176,7 +172,7 @@ public partial class Player : CharacterBody3D {
         float angle = autoTargetAngle;
         var target = AcquireTarget(candidates, origin, forward, maxRange, angle);
         Vector3 targetPosition = target != null ? target.GlobalTransform.Origin : Barrel.GlobalPosition + -GlobalTransform.Basis.Z * 100f;
-        SpawnProjectile(rocketScene, Level.GetNode("Entities"), targetPosition, Barrel.GlobalPosition, this);
+        SpawnProjectile(rocketScene, CurrentScene.GetNode("Entities"), targetPosition, Barrel.GlobalPosition, this);
         gunCharge = 0f;
         isCharging = false;
         canShoot = false;

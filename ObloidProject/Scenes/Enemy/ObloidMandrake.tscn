@@ -61,6 +61,10 @@ resource_name = "Material.002"
 cull_mode = 2
 albedo_texture = ExtResource("3_ffcvu")
 roughness = 0.5
+emission_enabled = true
+emission = Color(2.40654e-07, 0.814677, 0.226907, 1)
+emission_energy_multiplier = 2.0
+backlight = Color(1, 1, 1, 1)
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_8xbjl"]
 resource_name = "ObloidMandrake_Plane_003"
@@ -394,7 +398,8 @@ skin = SubResource("Skin_yjnvd")
 mesh = SubResource("ArrayMesh_7wngn")
 skin = SubResource("Skin_yjnvd")
 
-[node name="Sphere_001" type="MeshInstance3D" parent="ObloidMandrakeModel/Armature/Skeleton3D"]
+[node name="LimbsModel" type="MeshInstance3D" parent="ObloidMandrakeModel/Armature/Skeleton3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00187329, 0.0148698, 0.0172744)
 mesh = SubResource("ArrayMesh_bbmq0")
 skin = SubResource("Skin_yjnvd")
 

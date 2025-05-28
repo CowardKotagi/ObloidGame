@@ -22,5 +22,3 @@ mesh = SubResource("BoxMesh_dqqj2")
 
 [node name="CameraRayCast" type="RayCast3D" parent="CameraPivot"]
 target_position = Vector3(0, 4, 8)
-
-[node name="SpringArm3D" type="SpringArm3D" parent="."]

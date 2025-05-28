@@ -45,14 +45,16 @@ public partial class PlayerCamera : Node3D {
     
     public override void _PhysicsProcess(double delta) {
         if (Target == null) { return; }
-        var desiredPosition = Target.GlobalPosition + Target.GlobalTransform.Basis.Z.Normalized() * (Target.Velocity.Length() * -0.5f);
-        desiredPosition.Y = Mathf.Max(desiredPosition.Y, -10);
-        cameraBase.GlobalPosition = cameraBase.GlobalPosition.Lerp(desiredPosition, 0.1f);
-        cameraBase.RotationDegrees = new Godot.Vector3(Target.RotationDegrees.X, cameraBase.RotationDegrees.Y, Target.RotationDegrees.Z);
+        Vector3 cameraBaseTargetPosition = Target.GlobalPosition + Target.GlobalTransform.Basis.Z.Normalized() * (Target.Velocity.Length() * -0.5f);
+        cameraBaseTargetPosition.Y = Mathf.Max(cameraBaseTargetPosition.Y, -10);
+        cameraBase.GlobalPosition = cameraBase.GlobalPosition.Lerp(cameraBaseTargetPosition, 0.1f);
         cameraPivot.GlobalPosition = cameraPivot.GlobalPosition.Lerp(cameraBase.GlobalPosition + Vector3.Up * 2, 0.2f);
+
+        cameraBase.RotationDegrees = new Godot.Vector3(Target.RotationDegrees.X, cameraBase.RotationDegrees.Y, Target.RotationDegrees.Z);
         cameraPivot.Rotation = ObloidGame.SphericalLinearInterpolation(cameraPivot.Rotation, cameraBase.Rotation, 0.08f);
         
         if (cameraMode == 2) {
+            cameraRayCast.GlobalPosition = cameraPivot.GlobalPosition;
             cameraRayCast.TargetPosition = CAMERA_OFFSETS[2];
             cameraRayCast.ForceRaycastUpdate();
             if (cameraRayCast.IsColliding()) {

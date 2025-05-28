@@ -4,6 +4,7 @@ using static Projectile;
 using static UI;
 using System;
 using System.Linq;
+using System.Net;
 
 public partial class GameModeDungeon : Node3D {
     public Node EnvironmentNode;
@@ -18,6 +19,7 @@ public partial class GameModeDungeon : Node3D {
     DirectionalLight3D Sun;
 
     float ProjectileSpeedModifier = 2f;
+    DialogueBox dialogueBox;
     Label clockLabel;
     Label rootsLabel;
 
@@ -25,7 +27,7 @@ public partial class GameModeDungeon : Node3D {
        That is to say, Ready executes in children first, then parents. So this "Ready" is the last thing to be ready.
        but Entertree executes before ready */
 
-        public override void _EnterTree() {
+    public override void _EnterTree() {
         GD.Print("GameModeDungeon EnterTree");
         Players = GetEntitiesOfType<Player>(this);
     }
@@ -34,27 +36,28 @@ public partial class GameModeDungeon : Node3D {
         EnvironmentNode = this.HasNode("Environment") ? GetNode("Environment") : null;
         EntitiesNode = this.HasNode("Entities") ? GetNode("Entities") : null;
         UINode = this.HasNode("UI") ? GetNode("UI") : null;
-
-        ObloidGame.CurrentScene = this;
         this.Sun = GetNode<DirectionalLight3D>("Environment/DirectionalLight3D");
         clockLabel = GetNode<Label>("UI/Clock");
         rootsLabel = GetNode<Label>("UI/Roots");
-        Entities = GetEntitiesOfType<Node3D>(this);
+        dialogueBox = GetNode<DialogueBox>("UI/DialogueBox");
+
+        ObloidGame.CurrentScene = this;
         Input.MouseMode = Input.MouseModeEnum.Captured;
+        dialogueBox.Visible = false;
 
-        ObloidGame.Fade(GetNode<ColorRect>("UI/BlackFade"), 1, 0, ObloidGame.FADE_DURATION);
+        Entities = GetEntitiesOfType<Node3D>(this);
+        PackedScene packedScene = GD.Load<PackedScene>("res://Scenes/Enemy/ObloidMandrake.tscn");
+        SpawnEnemies(GetNode("Entities"), GetNode("Entities/Spawner"), packedScene);
 
-        var packedScene = GD.Load<PackedScene>("res://Scenes/Enemy/ObloidMandrake.tscn");
-        var tempEnemies = SpawnEnemies(GetNode("Entities"), GetNode("Entities/Spawner"), packedScene);
         Enemies = GetEntitiesOfType<ObloidMandrake>(this);
 
-        Players[0].Level = this;
+        ObloidGame.Fade(GetNode<ColorRect>("UI/BlackFade"), 1, 0, ObloidGame.FADE_DURATION);
     }
 
     public override void _PhysicsProcess(double delta) {
         HandleTime(delta, GetTree());
         if (UINode != null) {
-            HandleUI(clockLabel, rootsLabel);
+            HandleUI(clockLabel, rootsLabel, dialogueBox);
         }
         if (Input.IsActionJustPressed("Menu")) {
             GD.Print("Menu");
@@ -86,13 +89,8 @@ public partial class GameModeDungeon : Node3D {
                     var interaction = Interactions.GetInteraction(interactable.NpcId);
                     if (interaction.HasValue) {
                         int Index = interactable.Index;
-                        var Lines = interaction.Value.dialogueLines;
                         var Effects = interaction.Value.Effects;
-                        if (Index >= 0 && Index < Lines.Length) {
-                            string line = Lines[Index];
-                            if (!string.IsNullOrWhiteSpace(line)) {
-                                GD.Print(line);
-                            }
+                        if (Index >= 0 && Index < Effects.Length) {
                             if (Effects != null && Index < Effects.Length && Effects[Index] != null) {
                                 Effects[Index]?.Invoke();
                             }

@@ -199,6 +199,7 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_2atm1"]
+height = 1.0
 
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_jmcll"]
 
@@ -245,7 +246,7 @@ libraries = {
 }
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("CapsuleShape3D_2atm1")
 
 [node name="StairStepper" type="CollisionShape3D" parent="."]

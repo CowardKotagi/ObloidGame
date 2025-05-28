@@ -7,6 +7,7 @@ public partial class ObloidMandrake: RigidBody3D  {
     Node3D PlayerModel;
     MeshInstance3D LeavesModel;
     MeshInstance3D ShellModel;
+    MeshInstance3D LimbsModel;
     CollisionShape3D CollisionShape;
     RayCast3D GroundRayCast;
     AnimationPlayer AnimationPlayer;
@@ -41,6 +42,7 @@ public partial class ObloidMandrake: RigidBody3D  {
         PlayerModel = GetNode<Node3D>("ObloidMandrakeModel");
         LeavesModel = GetNode<MeshInstance3D>("ObloidMandrakeModel/Armature/Skeleton3D/LeavesModel");
         ShellModel = GetNode<MeshInstance3D>("ObloidMandrakeModel/Armature/Skeleton3D/ShellModel");
+        LimbsModel = GetNode<MeshInstance3D>("ObloidMandrakeModel/Armature/Skeleton3D/LimbsModel");
         CollisionShape = GetNode<CollisionShape3D>("CollisionShape3D");
         GroundRayCast = GetNode<RayCast3D>("GroundRayCast");
         AnimationPlayer = GetNode<AnimationPlayer>("ObloidMandrakeModel/AnimationPlayer");
@@ -77,6 +79,7 @@ public partial class ObloidMandrake: RigidBody3D  {
             Health = 0;
             LeavesModel.Visible = true;
             ShellModel.Visible = false;
+            LimbsModel.Visible = false;
             movementState = MovementState.Die;
         }
         UpdateMovementState();
