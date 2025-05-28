@@ -28,6 +28,7 @@ public partial class GameModeDungeon : Node3D {
        but Entertree executes before ready */
 
     public override void _EnterTree() {
+        Engine.MaxFps = 240;
         GD.Print("GameModeDungeon EnterTree");
         Players = GetEntitiesOfType<Player>(this);
     }
@@ -47,7 +48,7 @@ public partial class GameModeDungeon : Node3D {
 
         Entities = GetEntitiesOfType<Node3D>(this);
         PackedScene packedScene = GD.Load<PackedScene>("res://Scenes/Enemy/ObloidMandrake.tscn");
-        SpawnEnemies(GetNode("Entities"), GetNode("Entities/Spawner"), packedScene);
+        if (this.HasNode("Entities/Spawner")) { SpawnEnemies(GetNode("Entities"), GetNode("Entities/Spawner"), packedScene); }
 
         Enemies = GetEntitiesOfType<ObloidMandrake>(this);
 
@@ -55,6 +56,9 @@ public partial class GameModeDungeon : Node3D {
     }
 
     public override void _PhysicsProcess(double delta) {
+        if (Enemies == null || Enemies.Length == 0) {
+            GD.Print("No enemies left");
+        }
         HandleTime(delta, GetTree());
         if (UINode != null) {
             HandleUI(clockLabel, rootsLabel, dialogueBox);
@@ -107,32 +111,32 @@ public partial class GameModeDungeon : Node3D {
             }
         }
         for (int i = 0; i < Players.Length; i++) {
-            Player character = Players[i];
-            for (int j = 0; j < Enemies.Length; j++) {
-                ObloidMandrake enemy = Enemies[j];
-                if (enemy == null || !enemy.IsInsideTree()) continue;
-                float distance = (enemy.GlobalPosition - character.GlobalPosition).Length();
-                if (distance > 3f) continue;
-                if (enemy.GetNode<ObloidMandrake>(".").movementState != ObloidMandrake.MovementState.Die) continue;
-                Enemies = Enemies.Where(thisEnemy => thisEnemy != enemy).ToArray();
-                enemy.QueueFree();
-                if (character is Player) {
-                    Roots++;
-                }
-            }
-            if (character.IsInsideTree() && character.GlobalPosition.Length() > 1000f) {
+            if (Players[i] == null || !Players[i].IsInsideTree()) { continue; }
+            Player Player = Players[i];
+            if (Player.IsInsideTree() && Player.GlobalPosition.Length() > 1000f) {
                 GD.Print("RESET");
-                character.GlobalPosition = new Vector3(0, 0, 0);
-                character.Velocity = Vector3.Zero;
+                Player.GlobalPosition = new Vector3(0, 0, 0);
+                Player.Velocity = Vector3.Zero;
             }
         }
-        for (int i = 0; i < Enemies.Length; i++) {
-            ObloidMandrake enemy = Enemies[i];
-            if (enemy.IsInsideTree() && enemy.GlobalPosition.Length() > 1000f) {
-                GD.Print("ENEMY OUT OF BOUNDS");
-                Roots++;
-                Enemies = Enemies.Where(existingEnemy => existingEnemy != enemy).ToArray();
+        if (Enemies != null && Enemies.Length != 0) {
+            for (int i = 0; i < Enemies.Length; i++) {
+                if (Enemies[i] == null || !Enemies[i].IsInsideTree()) { continue; }
+                ObloidMandrake enemy = Enemies[i];
+                if (enemy == null || !enemy.IsInsideTree()) { continue; }
+                if ((enemy.GlobalPosition - Players[0].GlobalPosition).Length() > 3f) { continue; }
+                if (enemy.movementState != ObloidMandrake.MovementState.Die) { continue; }
+                Enemies = Enemies.Where(thisEnemy => thisEnemy != enemy).ToArray();
                 enemy.QueueFree();
+                if (Players[0] is Player) {
+                    Roots++;
+                }
+                if (enemy.IsInsideTree() && enemy.GlobalPosition.Length() > 1000f) {
+                    GD.Print("ENEMY OUT OF BOUNDS");
+                    Roots++;
+                    Enemies = Enemies.Where(existingEnemy => existingEnemy != enemy).ToArray();
+                    enemy.QueueFree();
+                }
             }
         }
     }

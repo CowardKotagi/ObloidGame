@@ -157,7 +157,9 @@ public partial class Player : CharacterBody3D {
     }
 
     private void Shoot() {
-        if (CurrentScene is not GameModeDungeon dungeon) { return; }
+        if (CurrentScene is not GameModeDungeon Dungeon) { return; }
+        if (CurrentScene.Name == "Peaceful") { return; }
+        GD.Print("Shooting with charge: " + gunCharge);
         Vector3 flingDirection = this.GlobalTransform.Basis.Z.Normalized();
         float maxPower = 25f;
         if (movementState == MovementStates.Fall) {
@@ -165,7 +167,7 @@ public partial class Player : CharacterBody3D {
         } else {
             Velocity += flingDirection * (gunCharge * maxPower);
         }
-        var candidates = dungeon.Enemies;
+        var candidates = Dungeon.Enemies;
         Vector3 origin = GlobalPosition;
         Vector3 forward = -GlobalTransform.Basis.Z.Normalized();
         float maxRange = 80f;
