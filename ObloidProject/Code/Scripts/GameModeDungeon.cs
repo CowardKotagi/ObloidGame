@@ -56,9 +56,6 @@ public partial class GameModeDungeon : Node3D {
     }
 
     public override void _PhysicsProcess(double delta) {
-        if (Enemies == null || Enemies.Length == 0) {
-            GD.Print("No enemies left");
-        }
         HandleTime(delta, GetTree());
         if (UINode != null) {
             HandleUI(clockLabel, rootsLabel, dialogueBox);

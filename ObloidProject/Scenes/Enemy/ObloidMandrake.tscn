@@ -335,6 +335,7 @@ axis_lock_angular_y = true
 axis_lock_angular_z = true
 mass = 2.0
 physics_material_override = SubResource("PhysicsMaterial_xbppq")
+continuous_cd = true
 script = ExtResource("1_jtoo3")
 
 [node name="ObloidMandrakeModel" type="Node3D" parent="."]
