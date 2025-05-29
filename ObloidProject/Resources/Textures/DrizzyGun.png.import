@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbfi3ju0em4ps"
-path.s3tc="res://.godot/imported/Nun.png-3556a33491d617de329106c659165244.s3tc.ctex"
+uid="uid://b5w45jvrl28s4"
+path.s3tc="res://.godot/imported/DrizzyGun.png-0bce2dca7a4bdeb6e563672b9ef49834.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Resources/Textures/Nun.png"
-dest_files=["res://.godot/imported/Nun.png-3556a33491d617de329106c659165244.s3tc.ctex"]
+source_file="res://Resources/Textures/DrizzyGun.png"
+dest_files=["res://.godot/imported/DrizzyGun.png-0bce2dca7a4bdeb6e563672b9ef49834.s3tc.ctex"]
 
 [params]
 

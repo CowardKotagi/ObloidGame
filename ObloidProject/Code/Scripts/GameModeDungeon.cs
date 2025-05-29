@@ -52,6 +52,10 @@ public partial class GameModeDungeon : Node3D {
     }
 
     public override void _PhysicsProcess(double delta) {
+        if (Input.IsActionJustPressed("Menu")) {
+            GD.Print("Menu");
+            Input.MouseMode = Input.MouseMode == Input.MouseModeEnum.Captured ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Captured;
+        }
         bool isUIValid = UINode != null;
         bool canPlayerInput = canInput == true && Players != null && Players.Length > 0;
         if (isUIValid) {
@@ -68,11 +72,11 @@ public partial class GameModeDungeon : Node3D {
             }
         }
         for (int i = 0; i < Players.Length; i++) {
-            if (Players[i] == null || !Players[i].IsInsideTree()) { continue; }
             Player Player = Players[i];
-            if (Player.IsInsideTree() && Player.GlobalPosition.Length() > 1000f) {
+            GD.Print(Player.GlobalPosition.Y);
+            if (Player.IsInsideTree() && Player.GlobalPosition.Y < -20f) {
                 GD.Print("RESET");
-                Player.GlobalPosition = new Vector3(0, 0, 0);
+                Player.GlobalPosition = Player.spawnPosition;
                 Player.Velocity = Vector3.Zero;
             }
         }
@@ -85,24 +89,18 @@ public partial class GameModeDungeon : Node3D {
                 if (enemy.movementState != ObloidMandrake.MovementState.Die) { continue; }
                 Enemies = Enemies.Where(thisEnemy => thisEnemy != enemy).ToArray();
                 enemy.QueueFree();
-                if (Players[0] is Player) {
-                    Roots++;
-                }
-                if (enemy.IsInsideTree() && enemy.GlobalPosition.Length() > 1000f) {
+                Roots++;
+                if (enemy.IsInsideTree() && enemy.GlobalPosition.Y < -20f) {
                     GD.Print("ENEMY OUT OF BOUNDS");
                     Roots++;
                     Enemies = Enemies.Where(existingEnemy => existingEnemy != enemy).ToArray();
-                    enemy.QueueFree();
+                    enemy.GlobalPosition = enemy.spawnPosition;
                 }
             }
         }
     }
     public void HandleInput(CharacterBody3D Player) {
         //TODO: move input handling out of the player class. Ideally remove the player class
-        if (Input.IsActionJustPressed("Menu")) {
-            GD.Print("Menu");
-            Input.MouseMode = Input.MouseMode == Input.MouseModeEnum.Captured ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Captured;
-        }
         if (Input.IsActionJustPressed("Debug")) {
             GD.Print("Debug");
             Sun.LightEnergy = Sun.LightEnergy == 0f ? 1f : 0f;

@@ -6,8 +6,8 @@ public partial class PlayerCamera : Node3D {
     RayCast3D cameraRayCast;
     public Camera3D cameraRaw;
         readonly Vector3[] CAMERA_OFFSETS = [
-        new Vector3(0, 24, 20),
-        new Vector3(0, 16, 16),
+        new Vector3(0, 26, 4),
+        new Vector3(0, 20, 20),
         new Vector3(0, 4, 8)
     ];
     int cameraMode = 0;

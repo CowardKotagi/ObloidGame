@@ -28,7 +28,7 @@ public partial class ObloidMandrake: RigidBody3D  {
     bool dontMove = false;
     bool Playercontrol = false;
     bool Grounded;
-    Vector3 spawnPosition;
+    public Vector3 spawnPosition;
     Vector3 wishDirection;
     Vector3 targetVelocity;
     // Enumerations

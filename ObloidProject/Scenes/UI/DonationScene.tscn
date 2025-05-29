@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dak8ef2p24s0a"]
+[gd_scene load_steps=7 format=3 uid="uid://dak8ef2p24s0a"]
 
 [ext_resource type="Script" uid="uid://b4lrpbwwolsqo" path="res://Code/Scripts/GameModeDungeon.cs" id="1_scdg0"]
 
@@ -15,6 +15,14 @@ sky_material = SubResource("ProceduralSkyMaterial_h8k8s")
 background_mode = 1
 background_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
 sky = SubResource("Sky_pgtsq")
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_scdg0"]
+width = 64
+height = 64
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h8k8s"]
+width = 64
+height = 64
 
 [node name="DonationScene" type="Node3D"]
 script = ExtResource("1_scdg0")
@@ -75,15 +83,40 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="UI/DonationUI"]
 layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -97.0
+offset_right = 97.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "How Much Will You Give?"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/DonationUI"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
+offset_left = -97.0
+offset_top = -15.5
+offset_right = 97.0
+offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Increase" type="TextureButton" parent="UI/DonationUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("NoiseTexture2D_scdg0")
+
+[node name="GiftLabel" type="Label" parent="UI/DonationUI/VBoxContainer"]
+layout_mode = 2
 text = "How Much Will You Give?"
+
+[node name="Decrease" type="TextureButton" parent="UI/DonationUI/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = SubResource("NoiseTexture2D_h8k8s")

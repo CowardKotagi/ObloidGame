@@ -17,7 +17,6 @@ sky_material = SubResource("ProceduralSkyMaterial_x0mv3")
 
 [sub_resource type="Environment" id="Environment_xdu2t"]
 background_mode = 1
-background_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
 sky = SubResource("Sky_dqdnp")
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_okbh8"]
@@ -198,6 +197,12 @@ script = ExtResource("1_dqdnp")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = SubResource("Environment_xdu2t")
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(0.866025, -0.482963, -0.12941, 7.19671e-09, -0.258819, 0.965926, -0.5, -0.836516, -0.224144, -5, 12, -3)
+light_energy = 0.01
+shadow_enabled = true
+directional_shadow_mode = 1
+
 [node name="OmniLight3D" type="OmniLight3D" parent="Environment"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 84, 14, -4)
 light_color = Color(0.968599, 0.66627, 0.781775, 1)
@@ -210,13 +215,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 90, 10, 16)
 light_color = Color(0.68, 0.76, 1, 1)
 omni_range = 13.0
 omni_attenuation = 0.702
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6, 12, 0)
-light_indirect_energy = 7.087
-light_volumetric_fog_energy = 4.755
-shadow_enabled = true
-directional_shadow_mode = 1
 
 [node name="Geometry" type="Node" parent="."]
 

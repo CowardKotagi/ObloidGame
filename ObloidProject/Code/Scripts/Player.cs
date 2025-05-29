@@ -26,6 +26,7 @@ public partial class Player : CharacterBody3D {
 	float runSpeed = 20f;
     float acceleration = 2.5f;
     // State
+    public Vector3 spawnPosition;
     float Health = 64f;
     float gunCharge;
 	bool isCharging;
@@ -48,6 +49,7 @@ public partial class Player : CharacterBody3D {
         GunshotAudio = GetNode<AudioStreamPlayer3D>("GunShotAudio");
         Barrel = GetNode<Marker3D>("Barrel");
         AnimationPlayer = GetNode<AnimationPlayer>("Drizzy/AnimationPlayer");
+        spawnPosition = GlobalPosition;
 	}
 
     public override void _PhysicsProcess(double delta) {
