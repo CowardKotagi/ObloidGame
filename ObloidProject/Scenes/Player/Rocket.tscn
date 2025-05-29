@@ -1,19 +1,18 @@
 [gd_scene load_steps=2 format=3 uid="uid://ccdm612ce2ab8"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_j0y6u"]
-radius = 0.3
-height = 1.2
-radial_segments = 4
-rings = 4
+[ext_resource type="PackedScene" uid="uid://cv7mhvu4tmyvg" path="res://Resources/Models/DrizzyRocket.gltf" id="1_nwsdl"]
 
 [node name="Rocket" type="Node3D" groups=["Projectile"]]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
-mesh = SubResource("CapsuleMesh_j0y6u")
+[node name="DrizzyRocket" parent="." instance=ExtResource("1_nwsdl")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0, 0)
 
 [node name="HitDetectionRaycast" type="RayCast3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 3)
 target_position = Vector3(0, 3, 0)
 hit_from_inside = true
 debug_shape_thickness = 5
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.590712)
+light_color = Color(1, 0.51, 0.51, 1)

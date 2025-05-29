@@ -32,7 +32,6 @@ public partial class Player : CharacterBody3D {
     bool canShoot;
 	bool canDodge;
 	bool canJump;
-	bool canInput = true;
     float shootCooldown = 0f;
     const float SHOOT_COOLDOWN_DURATION = 1.88f;
     float dodgeCooldown = 0f;
@@ -43,12 +42,12 @@ public partial class Player : CharacterBody3D {
 	MovementStates movementState = MovementStates.Idle;
 
 	public override void _Ready() {
-		PlayerModel = GetNode<Node3D>("Nun");
+		PlayerModel = GetNode<Node3D>("Drizzy");
 		CollisionShape = GetNode<CollisionShape3D>("CollisionShape3D");
 		GroundRayCast = GetNode<RayCast3D>("GroundRayCast");
         GunshotAudio = GetNode<AudioStreamPlayer3D>("GunShotAudio");
         Barrel = GetNode<Marker3D>("Barrel");
-        AnimationPlayer = GetNode<AnimationPlayer>("Nun/AnimationPlayer");
+        AnimationPlayer = GetNode<AnimationPlayer>("Drizzy/AnimationPlayer");
 	}
 
     public override void _PhysicsProcess(double delta) {
@@ -56,7 +55,7 @@ public partial class Player : CharacterBody3D {
 
         Vector3 cameraForward = Camera.GlobalTransform.Basis.Z.Normalized();
         Vector3 cameraRight = Camera.GlobalTransform.Basis.X.Normalized();
-        moveInput = canInput ? Input.GetVector("moveLeft", "moveRight", "moveForward", "moveBackward") : new Godot.Vector2(0, 0);
+        moveInput = ObloidGame.canInput ? Input.GetVector("moveLeft", "moveRight", "moveForward", "moveBackward") : new Godot.Vector2(0, 0);
         wishDirection = (cameraForward * moveInput.Y + cameraRight * moveInput.X).Normalized();
         Cooldowns(delta);
         

@@ -10,6 +10,7 @@ public static class ObloidGame {
     public static int Roots = 10;
     public static int Donations = 0;
     public const int FADE_DURATION = 1;
+	public static bool canInput = true;
     public static dynamic CurrentScene;
     // allman to K&R find and replace:
     // find ([^\r\n]+)\r?\n[ \t]*\{[ \t]*\r?\n

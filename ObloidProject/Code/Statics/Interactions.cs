@@ -34,7 +34,7 @@ public static class Interactions {
             npcName = "DungeonEntrance",
             Effects = new Action[] {
                 () => {
-                    ObloidGame.ChangeScene(ObloidGame.CurrentScene, ObloidGame.CurrentScene.GetNode<ColorRect>("UI/BlackFade"), "res://Scenes/Levels/Church.tscn");
+                    ObloidGame.ChangeScene(ObloidGame.CurrentScene, ObloidGame.CurrentScene.GetNode<ColorRect>("UI/BlackFade"), "res://Scenes/Levels/DungeonTest.tscn");
                 },
             }
         },

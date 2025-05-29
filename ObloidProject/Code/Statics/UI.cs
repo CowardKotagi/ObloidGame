@@ -16,13 +16,13 @@ public static class UI {
 		State.Timer = visibleTime;
 	}
 
-    public static void UpdateDialogueBox(DialogueBox state, double delta) {
-        if (!state.Visible) { return; }
-        state.Timer -= (float)delta;
-        if (state.Timer <= 0 || Input.IsActionJustPressed("Interact")) {
+    public static void UpdateDialogueBox(DialogueBox State, double delta) {
+        if (!State.Visible) { return; }
+        State.Timer -= (float)delta;
+        if (State.Timer <= 0 || Input.IsActionJustPressed("Interact")) {
             GD.Print("Become invisible");
-            state.Visible = false;
-            state.Timer = 0;
+            State.Visible = false;
+            State.Timer = 0;
         }
         return;
     }
