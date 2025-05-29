@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bequg7l5uxlfp"]
-
-[ext_resource type="Script" uid="uid://bgmvjhb47lesp" path="res://Code/Scripts/CustomNodes/Marker3DSpawner.cs" id="1_aqhvw"]
-
-[node name="SpawnMarker" type="Marker3D"]
-script = ExtResource("1_aqhvw")
-metadata/_custom_type_script = "uid://bgmvjhb47lesp"
