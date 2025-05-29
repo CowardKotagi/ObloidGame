@@ -73,7 +73,6 @@ public partial class GameModeDungeon : Node3D {
         }
         for (int i = 0; i < Players.Length; i++) {
             Player Player = Players[i];
-            GD.Print(Player.GlobalPosition.Y);
             if (Player.IsInsideTree() && Player.GlobalPosition.Y < -20f) {
                 GD.Print("RESET");
                 Player.GlobalPosition = Player.spawnPosition;
