@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=3 uid="uid://dak8ef2p24s0a"]
+
+[ext_resource type="Script" uid="uid://b4lrpbwwolsqo" path="res://Code/Scripts/GameModeDungeon.cs" id="1_scdg0"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h8k8s"]
+sky_top_color = Color(0, 0, 0, 1)
+sky_horizon_color = Color(0.289162, 0.296612, 0.308372, 1)
+ground_horizon_color = Color(0.290196, 0.298039, 0.309804, 1)
+ground_curve = 0.0107177
+
+[sub_resource type="Sky" id="Sky_pgtsq"]
+sky_material = SubResource("ProceduralSkyMaterial_h8k8s")
+
+[sub_resource type="Environment" id="Environment_vrrov"]
+background_mode = 1
+background_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
+sky = SubResource("Sky_pgtsq")
+
+[node name="DonationScene" type="Node3D"]
+script = ExtResource("1_scdg0")
+
+[node name="Environment" type="Node" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
+environment = SubResource("Environment_vrrov")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6, 12, 0)
+light_indirect_energy = 7.087
+light_volumetric_fog_energy = 4.755
+shadow_enabled = true
+directional_shadow_mode = 1
+
+[node name="Geometry" type="Node" parent="."]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
+size = Vector3(50, 4, 50)
+
+[node name="Camera3D" type="Camera3D" parent="Geometry"]
+transform = Transform3D(-0.789149, 0.433013, -0.435596, 0.0473672, 0.75, 0.65974, 0.612373, 0.5, -0.612373, -10, 11, -13)
+
+[node name="Props" type="Node" parent="."]
+
+[node name="Entities" type="Node" parent="."]
+
+[node name="UI" type="Node" parent="."]
+
+[node name="BlackFade" type="ColorRect" parent="UI"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="BlackTint" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.266667)
+metadata/_edit_use_anchors_ = true
+
+[node name="DonationUI" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI/DonationUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "How Much Will You Give?"

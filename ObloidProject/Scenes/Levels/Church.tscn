@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://b4lrpbwwolsqo" path="res://Code/Scripts/GameModeDungeon.cs" id="1_o4pu0"]
 [ext_resource type="PackedScene" uid="uid://dla6sfohbwjy" path="res://Scenes/Entities/DungeonEntrance.tscn" id="3_o4pu0"]
 [ext_resource type="PackedScene" uid="uid://oerasy70vlod" path="res://Scenes/Player/PlayerCamera.tscn" id="3_r53cu"]
-[ext_resource type="PackedScene" uid="uid://b0152rdnmr8og" path="res://Scenes/NPCS/NPCDonate.tscn" id="6_o4pu0"]
+[ext_resource type="PackedScene" uid="uid://b0152rdnmr8og" path="res://Scenes/Entities/NPCDonate.tscn" id="6_o4pu0"]
 [ext_resource type="PackedScene" uid="uid://b10x7fue57fka" path="res://Scenes/Player/Player.tscn" id="6_t1sbl"]
 [ext_resource type="PackedScene" uid="uid://c8sw83t2abcsa" path="res://Scenes/UI/DialogueBox.tscn" id="7_t1sbl"]
 

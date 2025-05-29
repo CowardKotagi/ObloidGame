@@ -23,28 +23,23 @@ public partial class GameModeDungeon : Node3D {
     public Label clockLabel;
     public Label rootsLabel;
 
-    /* We use _EnterTree() when _Ready() is not fast enough.
+    /* We may need to use _EnterTree() when _Ready() is not fast enough.
        That is to say, Ready executes in children first, then parents. So this "Ready" is the last thing to be ready.
-       but Entertree executes before ready */
-
-    public override void _EnterTree() {
-        Engine.MaxFps = 240;
-        GD.Print("GameModeDungeon EnterTree");
-        Players = GetEntitiesOfType<Player>(this);
-    }
+       But Entertree executes before ready */
 
     public override void _Ready(){
+        Engine.MaxFps = 240;
         EnvironmentNode = this.HasNode("Environment") ? GetNode("Environment") : null;
         EntitiesNode = this.HasNode("Entities") ? GetNode("Entities") : null;
         UINode = this.HasNode("UI") ? GetNode("UI") : null;
-        this.Sun = GetNode<DirectionalLight3D>("Environment/DirectionalLight3D");
-        clockLabel = GetNode<Label>("UI/Clock");
-        rootsLabel = GetNode<Label>("UI/Roots");
-        dialogueBox = GetNode<DialogueBox>("UI/DialogueBox");
+        Sun = this.HasNode("Environment/DirectionalLight3D") ? GetNode<DirectionalLight3D>("Environment/DirectionalLight3D") : null;
+        clockLabel = this.HasNode("UI/Clock") ? GetNode<Label>("UI/Clock") : null;
+        rootsLabel = this.HasNode("UI/Roots") ? GetNode<Label>("UI/Roots") : null;
+        dialogueBox = this.HasNode("UI/DialogueBox") ? GetNode<DialogueBox>("UI/DialogueBox") : null;
 
         ObloidGame.CurrentScene = this;
         Input.MouseMode = Input.MouseModeEnum.Captured;
-        dialogueBox.Visible = false;
+        if (dialogueBox != null) { dialogueBox.Visible = false; }
 
         Entities = GetEntitiesOfType<Node3D>(this);
         PackedScene packedScene = GD.Load<PackedScene>("res://Scenes/Enemy/ObloidMandrake.tscn");
@@ -53,14 +48,17 @@ public partial class GameModeDungeon : Node3D {
         Enemies = GetEntitiesOfType<ObloidMandrake>(this);
 
         ObloidGame.Fade(GetNode<ColorRect>("UI/BlackFade"), 1, 0, ObloidGame.FADE_DURATION);
+        Players = GetEntitiesOfType<Player>(this);
     }
 
     public override void _PhysicsProcess(double delta) {
-        HandleTime(delta, GetTree());
-        if (UINode != null) {
+        bool isUIValid = UINode != null;
+        bool canPlayerInput = canInput == true && Players != null && Players.Length > 0;
+        if (isUIValid) {
+            HandleTime(delta, GetTree());
             UIProcedure(clockLabel, rootsLabel, dialogueBox, delta);
         }
-        if (canInput == true) {
+        if (canPlayerInput) {
             HandleInput(Players[0]);
         }
         Node3D[] projectiles = GetEntitiesOfType<Node3D>(this);

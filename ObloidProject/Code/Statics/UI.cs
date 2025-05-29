@@ -4,9 +4,17 @@ using static ObloidGame;
 
 public static class UI {
     public static void UIProcedure(Label clockLabel, Label rootsLabel, DialogueBox dialogueBox, double delta) {
-        clockLabel.Text = "Day: " + ObloidGame.currentDay + "\nHour: " + ObloidGame.currentMinute;
-        rootsLabel.Text = "Roots: " + ObloidGame.Roots;
-        UpdateDialogueBox(CurrentScene.dialogueBox, delta);
+        if (clockLabel != null) {
+            clockLabel.Text = "Day: " + ObloidGame.currentDay + "\nHour: " + ObloidGame.currentMinute;
+        }
+
+        if (rootsLabel != null) {
+            rootsLabel.Text = "Roots: " + ObloidGame.Roots;
+        }
+
+        if (dialogueBox != null) {
+            UpdateDialogueBox(dialogueBox, delta);
+        }
     }
     
     public static void ShowDialogue(DialogueBox State, string Speaker, string Dialogue, float visibleTime) {

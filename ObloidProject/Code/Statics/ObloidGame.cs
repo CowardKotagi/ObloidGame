@@ -137,9 +137,10 @@ public static class ObloidGame {
             return;
         }
     }
-    
     public static T[] GetEntitiesOfType<T>(Node Root) where T : Node {
-        return Root.GetNode("Entities").GetChildren().Cast<Node>().OfType<T>().ToArray();
+        Node entitiesNode = Root.GetNode("Entities");
+        if (entitiesNode == null) { return new T[0]; }
+        return entitiesNode.GetChildren().Cast<Node>().OfType<T>().ToArray();
     }
     /*
     ███████████████████████████████████████████████████████████████████████████████████████████████████████████████
