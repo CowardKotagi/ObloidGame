@@ -238,14 +238,14 @@ shape = SubResource("ConcavePolygonShape3D_dqdnp")
 
 [node name="Entities" type="Node" parent="."]
 
+[node name="ExitDungeonLadder" parent="Entities" instance=ExtResource("4_4122k")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -27, 6, 0)
+
 [node name="Player" parent="Entities" instance=ExtResource("2_utlp5")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.7686, 20.3906, 2.5014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.7686, 20.3906, 2.5014)
 
 [node name="CameraBase" parent="Entities/Player" instance=ExtResource("3_j6f08")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.678444, -1, 0.0619583)
-
-[node name="ExitDungeon" parent="Entities" instance=ExtResource("4_4122k")]
-transform = Transform3D(1.31134e-07, 0, -1, 0, 1, 0, 1, 0, 1.31134e-07, -28, 0, 2)
 
 [node name="Spawner" type="Node3D" parent="Entities"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 182.823, 0, 1.05459)

@@ -20,6 +20,7 @@ public partial class GameModeDungeon : Node3D {
 
     public float ProjectileSpeedModifier = 2f;
     public DialogueBox dialogueBox;
+    public DonationUI donationUI;
     public Label clockLabel;
     public Label rootsLabel;
 
@@ -36,6 +37,7 @@ public partial class GameModeDungeon : Node3D {
         clockLabel = this.HasNode("UI/Clock") ? GetNode<Label>("UI/Clock") : null;
         rootsLabel = this.HasNode("UI/Roots") ? GetNode<Label>("UI/Roots") : null;
         dialogueBox = this.HasNode("UI/DialogueBox") ? GetNode<DialogueBox>("UI/DialogueBox") : null;
+        donationUI = this.HasNode("UI/DonationUI") ? GetNode<DonationUI>("UI/DonationUI") : null;
 
         ObloidGame.CurrentScene = this;
         Input.MouseMode = Input.MouseModeEnum.Captured;
@@ -60,7 +62,7 @@ public partial class GameModeDungeon : Node3D {
         bool canPlayerInput = canInput == true && Players != null && Players.Length > 0;
         if (isUIValid) {
             HandleTime(delta, GetTree());
-            UIProcedure(clockLabel, rootsLabel, dialogueBox, delta);
+            UIProcedure(clockLabel, rootsLabel, dialogueBox, donationUI, delta);
         }
         if (canPlayerInput) {
             HandleInput(Players[0]);
@@ -107,6 +109,7 @@ public partial class GameModeDungeon : Node3D {
         if (Input.IsActionJustPressed("Interact") && dialogueBox.Visible == false) {
             Node3D[] Entities = GetNode("Entities").GetChildren().OfType<Node3D>().ToArray();
             Node3D[] potentialTargets = GetObjectsWithinArea(Entities, Players[0].GlobalPosition - Players[0].GlobalTransform.Basis.Z * 2f, 4f, 4f);
+            foreach (Node3D potentialtarget in potentialTargets) { GD.Print(potentialtarget.Name); }
             int count = 0;
             for (int i = 0; i < potentialTargets.Length; i++)
                 if (potentialTargets[i].FindChild("InteractableComponent") != null)

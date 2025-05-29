@@ -3,7 +3,7 @@ using Godot;
 using static ObloidGame;
 
 public static class UI {
-    public static void UIProcedure(Label clockLabel, Label rootsLabel, DialogueBox dialogueBox, double delta) {
+    public static void UIProcedure(Label clockLabel, Label rootsLabel, DialogueBox dialogueBox, Control DonationUI, double delta) {
         if (clockLabel != null) {
             clockLabel.Text = "Day: " + ObloidGame.currentDay + "\nHour: " + ObloidGame.currentMinute;
         }
@@ -14,6 +14,10 @@ public static class UI {
 
         if (dialogueBox != null) {
             UpdateDialogueBox(dialogueBox, delta);
+        }
+
+        if (DonationUI != null) {
+            
         }
     }
     

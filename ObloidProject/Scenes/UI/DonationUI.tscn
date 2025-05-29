@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://3qjablc440p2"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_scdg0"]
+width = 64
+height = 64
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h8k8s"]
+width = 64
+height = 64
+
+[node name="DonationUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -97.0
+offset_right = 97.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "How Much Will You Give?"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -97.0
+offset_top = -15.5
+offset_right = 97.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Increase" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = SubResource("NoiseTexture2D_scdg0")
+
+[node name="GiftLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "How Much Will You Give?"
+
+[node name="Decrease" type="TextureButton" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = SubResource("NoiseTexture2D_h8k8s")

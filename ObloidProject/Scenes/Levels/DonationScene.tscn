@@ -1,6 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://dak8ef2p24s0a"]
 
-[ext_resource type="Script" uid="uid://b4lrpbwwolsqo" path="res://Code/Scripts/GameModeDungeon.cs" id="1_scdg0"]
+[ext_resource type="Script" uid="uid://b4lrpbwwolsqo" path="res://Code/Scripts/GameModeDungeon.cs" id="1_6io76"]
+[ext_resource type="PackedScene" uid="uid://3qjablc440p2" path="res://Scenes/UI/DonationUI.tscn" id="2_yba1w"]
+[ext_resource type="Script" uid="uid://bw1y7r7s5wdvy" path="res://DonationUI.cs" id="3_1tpq1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h8k8s"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -16,16 +18,8 @@ background_mode = 1
 background_color = Color(0.0768358, 0.0768358, 0.0768358, 1)
 sky = SubResource("Sky_pgtsq")
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_scdg0"]
-width = 64
-height = 64
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h8k8s"]
-width = 64
-height = 64
-
 [node name="DonationScene" type="Node3D"]
-script = ExtResource("1_scdg0")
+script = ExtResource("1_6io76")
 
 [node name="Environment" type="Node" parent="."]
 
@@ -73,50 +67,5 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.266667)
 metadata/_edit_use_anchors_ = true
 
-[node name="DonationUI" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="UI/DonationUI"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -97.0
-offset_right = 97.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "How Much Will You Give?"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/DonationUI"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -97.0
-offset_top = -15.5
-offset_right = 97.0
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Increase" type="TextureButton" parent="UI/DonationUI/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = SubResource("NoiseTexture2D_scdg0")
-
-[node name="GiftLabel" type="Label" parent="UI/DonationUI/VBoxContainer"]
-layout_mode = 2
-text = "How Much Will You Give?"
-
-[node name="Decrease" type="TextureButton" parent="UI/DonationUI/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = SubResource("NoiseTexture2D_h8k8s")
+[node name="DonationUI" parent="UI" instance=ExtResource("2_yba1w")]
+script = ExtResource("3_1tpq1")

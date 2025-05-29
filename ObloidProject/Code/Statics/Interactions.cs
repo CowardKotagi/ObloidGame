@@ -13,7 +13,7 @@ public static class Interactions {
             npcName = "NPCDonate",
             Effects = new Action[] {
                 () => {
-                    ShowDialogue(CurrentScene.dialogueBox, "NPCDonate", "What will you spare?", 2f);
+                    ObloidGame.ChangeScene(ObloidGame.CurrentScene, ObloidGame.CurrentScene.GetNode<ColorRect>("UI/BlackFade"), "res://Scenes/Levels/DonationScene.tscn");
                 },
                 () => {
                     ShowDialogue(CurrentScene.dialogueBox, "NPCDonate", "Thank you.", 2f);
