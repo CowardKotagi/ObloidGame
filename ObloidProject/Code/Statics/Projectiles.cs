@@ -1,7 +1,6 @@
 using Godot;
 using static ObloidGame;
 using System;
-using Obloid.Code.Scripts.CustomNodes;
 
 public static class Projectile {
     public static void SpawnProjectile(PackedScene projectileScene, Node parent, Vector3 targetPosition, Vector3 spawnPosition, CollisionObject3D excludeNode) {
