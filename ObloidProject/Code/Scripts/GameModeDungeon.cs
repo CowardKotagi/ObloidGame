@@ -13,6 +13,7 @@ public partial class GameModeDungeon : Node3D {
 
     [Export] public bool timeAdvance = true;
     public Player[] Players;
+    public PlayerCamera Camera;
     public ObloidMandrake[] Enemies;
     public Node3D[] Entities;
 
@@ -22,7 +23,7 @@ public partial class GameModeDungeon : Node3D {
     public DialogueBox dialogueBox;
     public DonationUI donationUI;
     public Clock clockUI;
-    public Label rootsLabel;
+    public RootsCounter rootsCounter;
 
     /* We may need to use _EnterTree() when _Ready() is not fast enough.
        That is to say, Ready executes in children first, then parents. So this "Ready" is the last thing to be ready.
@@ -30,34 +31,38 @@ public partial class GameModeDungeon : Node3D {
 
     public override void _Ready() {
         Engine.MaxFps = 240;
-        EnvironmentNode = this.HasNode("Environment") ? GetNode("Environment") : null;
-        EntitiesNode = this.HasNode("Entities") ? GetNode("Entities") : null;
-        UINode = this.HasNode("UI") ? GetNode("UI") : null;
+        ObloidGame.CurrentScene = this;
+        ObloidGame.currentMinute = 0;
+
+        Camera = this.HasNode("Entities/Player/CameraBase") ? GetNode<PlayerCamera>("Entities/Player/CameraBase") : null;
+        EnvironmentNode = this.HasNode("Environment") ? GetNode<Node>("Environment") : null;
+        EntitiesNode = this.HasNode("Entities") ? GetNode<Node>("Entities") : null;
+        UINode = this.HasNode("UI") ? GetNode<Node>("UI") : null;
         Sun = this.HasNode("Environment/DirectionalLight3D") ? GetNode<DirectionalLight3D>("Environment/DirectionalLight3D") : null;
-        rootsLabel = this.HasNode("UI/Roots") ? GetNode<Label>("UI/Roots") : null;
         dialogueBox = this.HasNode("UI/DialogueBox") ? GetNode<DialogueBox>("UI/DialogueBox") : null;
         donationUI = this.HasNode("UI/DonationUI") ? GetNode<DonationUI>("UI/DonationUI") : null;
         clockUI = this.HasNode("UI/Clock") ? GetNode<Clock>("UI/Clock") : null;
+        rootsCounter = this.HasNode("UI/RootsCounter") ? GetNode<RootsCounter>("UI/RootsCounter") : null;
 
-        clockUI.DayCount.Text = currentDay.ToString();
-        ObloidGame.currentMinute = 0;
-        ObloidGame.CurrentScene = this;
-        Input.MouseMode = Input.MouseModeEnum.Captured;
+        if (clockUI != null) { clockUI.DayCount.Text = currentDay.ToString(); }
+        if (donationUI != null) {
+            Input.MouseMode = Input.MouseModeEnum.Visible;
+        } else {
+            Input.MouseMode = Input.MouseModeEnum.Captured;
+        }
         if (dialogueBox != null) { dialogueBox.Visible = false; }
 
-        Entities = GetEntitiesOfType<Node3D>(this);
         PackedScene packedScene = GD.Load<PackedScene>("res://Scenes/Enemy/ObloidMandrake.tscn");
         if (this.HasNode("Entities/Spawner")) { SpawnEnemies(GetNode("Entities"), GetNode("Entities/Spawner"), packedScene); }
-
-        Enemies = GetEntitiesOfType<ObloidMandrake>(this);
-
         ObloidGame.Fade(GetNode<ColorRect>("UI/BlackFade"), 1, 0, ObloidGame.FADE_DURATION);
-        Players = GetEntitiesOfType<Player>(this);
 
+        Entities = GetEntitiesOfType<Node3D>(this);
+        Enemies = GetEntitiesOfType<ObloidMandrake>(this);
+        Players = GetEntitiesOfType<Player>(this);
     }
 
     public override void _PhysicsProcess(double delta) {
-        if (Input.IsActionJustPressed("Menu")) {
+        if (Input.IsActionJustPressed("Menu") && donationUI == null) {
             GD.Print("Menu");
             Input.MouseMode = Input.MouseMode == Input.MouseModeEnum.Captured ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Captured;
         }
@@ -65,7 +70,7 @@ public partial class GameModeDungeon : Node3D {
         bool isUIValid = UINode != null;
         if (isUIValid) {
             HandleTime(delta, GetTree());
-            UIProcedure(clockUI, rootsLabel, dialogueBox, donationUI, delta);
+            UIProcedure(clockUI, rootsCounter, dialogueBox, donationUI, delta);
         }
 
         bool canPlayerInput = canInput == true && Players != null && Players.Length > 0;
@@ -84,6 +89,7 @@ public partial class GameModeDungeon : Node3D {
             if (Player.IsInsideTree() && Player.GlobalPosition.Y < -20f) {
                 GD.Print("RESET");
                 Player.GlobalPosition = Player.spawnPosition;
+                Camera.GlobalPosition = Player.spawnPosition;
                 Player.Velocity = Vector3.Zero;
             }
         }

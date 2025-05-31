@@ -1,0 +1,50 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8a3forsawi6k"]
+
+[ext_resource type="Script" uid="uid://xl6rhaor01gj" path="res://Code/Datatypes/RootsCounter.cs" id="1_j0c3d"]
+[ext_resource type="Texture2D" uid="uid://dms07coud6us4" path="res://Resources/Textures/RootCounter.png" id="1_qc41g"]
+[ext_resource type="Theme" uid="uid://hs0lph5ymt1m" path="res://Resources/Theme.tres" id="2_j0c3d"]
+
+[node name="RootsCounter" type="Control" node_paths=PackedStringArray("RootsLabel")]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = -40.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_j0c3d")
+RootsLabel = NodePath("TextureRect/Roots")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -61.0
+offset_top = -145.0
+offset_right = 61.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_qc41g")
+
+[node name="Roots" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.48
+anchor_top = 0.807
+anchor_right = 0.5
+anchor_bottom = 0.807
+offset_left = -20.0
+offset_top = -23.0
+offset_right = 20.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(1.0021, 1.00498)
+theme = ExtResource("2_j0c3d")
+horizontal_alignment = 1

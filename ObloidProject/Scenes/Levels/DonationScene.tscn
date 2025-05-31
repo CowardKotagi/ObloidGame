@@ -48,7 +48,6 @@ transform = Transform3D(-0.789149, 0.433013, -0.435596, 0.0473672, 0.75, 0.65974
 [node name="UI" type="Node" parent="."]
 
 [node name="BlackFade" type="ColorRect" parent="UI"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
