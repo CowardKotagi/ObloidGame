@@ -18,7 +18,7 @@ near = 0.005
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16, 0)
 light_energy = 4.0
 spot_range = 64.0
-spot_attenuation = 2.0
+spot_attenuation = 1.5
 spot_angle = 77.0
 
 [node name="CameraRayCast" type="RayCast3D" parent="CameraPivot"]

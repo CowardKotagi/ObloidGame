@@ -45,10 +45,10 @@ public partial class PlayerCamera : Node3D {
     
     public override void _PhysicsProcess(double delta) {
         if (Target == null) { return; }
-        Vector3 cameraBaseTargetPosition = Target.GlobalPosition + Target.GlobalTransform.Basis.Z.Normalized() * (Target.Velocity.Length() * -0.5f);
+        Vector3 cameraBaseTargetPosition = Target.GlobalPosition;
         cameraBaseTargetPosition.Y = Mathf.Max(cameraBaseTargetPosition.Y, -10);
-        cameraBase.GlobalPosition = cameraBase.GlobalPosition.Lerp(cameraBaseTargetPosition, 0.1f);
-        cameraPivot.GlobalPosition = cameraPivot.GlobalPosition.Lerp(cameraBase.GlobalPosition + Vector3.Up * 2, 0.2f);
+        cameraBase.GlobalPosition = cameraBaseTargetPosition;
+        cameraPivot.GlobalPosition = cameraPivot.GlobalPosition.Lerp(cameraBase.GlobalPosition + Vector3.Up * 2, 0.3f);
 
         cameraBase.RotationDegrees = new Godot.Vector3(Target.RotationDegrees.X, cameraBase.RotationDegrees.Y, Target.RotationDegrees.Z);
         cameraPivot.Rotation = ObloidGame.SphericalLinearInterpolation(cameraPivot.Rotation, cameraBase.Rotation, 0.08f);

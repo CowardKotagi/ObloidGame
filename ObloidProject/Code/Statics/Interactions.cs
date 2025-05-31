@@ -15,11 +15,6 @@ public static class Interactions {
                 () => {
                     ObloidGame.ChangeScene(ObloidGame.CurrentScene, ObloidGame.CurrentScene.GetNode<ColorRect>("UI/BlackFade"), "res://Scenes/Levels/DonationScene.tscn");
                 },
-                () => {
-                    ShowDialogue(CurrentScene.dialogueBox, "NPCDonate", "Thank you.", 2f);
-                    ObloidGame.Donations += ObloidGame.Donations;
-                    ObloidGame.Roots -= ObloidGame.Roots;
-                }
             }
         },
         new InteractionData {

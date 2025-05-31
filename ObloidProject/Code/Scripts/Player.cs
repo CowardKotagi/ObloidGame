@@ -74,6 +74,7 @@ public partial class Player : CharacterBody3D {
         }
 
         UpdateMovementState();
+        ApplyFloorSnap();
         MoveAndSlide();
     }
 

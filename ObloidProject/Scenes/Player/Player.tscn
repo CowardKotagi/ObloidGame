@@ -338,6 +338,7 @@ height = 1.0
 [sub_resource type="SeparationRayShape3D" id="SeparationRayShape3D_jmcll"]
 
 [node name="Player" type="CharacterBody3D" groups=["Targetable"]]
+floor_snap_length = 0.4
 script = ExtResource("1_q2q2k")
 
 [node name="Drizzy" type="Node3D" parent="."]
@@ -414,9 +415,7 @@ volume_db = -12.0
 [node name="Barrel" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.308767, 0.667849, -0.75005)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -2.98023e-08, 1, 0, -1, -2.98023e-08, 0, 16, 0)
-light_energy = 4.0
-spot_range = 64.0
-spot_attenuation = 2.0
-spot_angle = 77.0
+[node name="OmniLight" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -2.98023e-08, 1, 0, -1, -2.98023e-08, 0, 3, 0)
+omni_range = 64.0
+omni_attenuation = 2.0

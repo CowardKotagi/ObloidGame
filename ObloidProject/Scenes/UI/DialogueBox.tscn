@@ -6,11 +6,11 @@
 
 [node name="DialogueBox" type="Control" node_paths=PackedStringArray("Background", "Speaker", "Dialogue")]
 layout_mode = 3
-anchor_top = 0.667
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 theme = SubResource("Theme_ylxmy")
 script = ExtResource("1_38wjl")
 Background = NodePath("ColorRect")
@@ -19,25 +19,23 @@ Dialogue = NodePath("ColorRect/Dialogue")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.489622, 0.489622, 0.489622, 0.494118)
-metadata/_edit_use_anchors_ = true
 
 [node name="Speaker" type="Label" parent="ColorRect"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.01
-anchor_top = 0.05
-anchor_right = 0.103101
-anchor_bottom = 0.190663
-offset_right = 0.163994
-offset_bottom = -0.0169621
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -31.5
+offset_right = 31.5
+offset_bottom = 23.0
+grow_horizontal = 2
 text = "Speaker"
-metadata/_edit_use_anchors_ = true
 
 [node name="Dialogue" type="RichTextLabel" parent="ColorRect"]
 layout_mode = 1
@@ -49,4 +47,3 @@ anchor_bottom = 0.8
 grow_horizontal = 2
 grow_vertical = 2
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-metadata/_edit_use_anchors_ = true

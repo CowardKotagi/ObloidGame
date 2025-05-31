@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dak8ef2p24s0a"]
+[gd_scene load_steps=7 format=3 uid="uid://dak8ef2p24s0a"]
 
 [ext_resource type="Script" uid="uid://b4lrpbwwolsqo" path="res://Code/Scripts/GameModeDungeon.cs" id="1_6io76"]
+[ext_resource type="PackedScene" uid="uid://c8a3forsawi6k" path="res://Scenes/UI/RootsCounter.tscn" id="2_6io76"]
 [ext_resource type="PackedScene" uid="uid://3qjablc440p2" path="res://Scenes/UI/DonationUI.tscn" id="2_yba1w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h8k8s"]
@@ -47,14 +48,7 @@ transform = Transform3D(-0.789149, 0.433013, -0.435596, 0.0473672, 0.75, 0.65974
 
 [node name="UI" type="Node" parent="."]
 
-[node name="BlackFade" type="ColorRect" parent="UI"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 1)
-metadata/_edit_use_anchors_ = true
+[node name="RootsCounter" parent="UI" instance=ExtResource("2_6io76")]
 
 [node name="BlackTint" type="ColorRect" parent="UI"]
 anchors_preset = 15
@@ -66,3 +60,12 @@ color = Color(0, 0, 0, 0.266667)
 metadata/_edit_use_anchors_ = true
 
 [node name="DonationUI" parent="UI" instance=ExtResource("2_yba1w")]
+
+[node name="BlackFade" type="ColorRect" parent="UI"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
