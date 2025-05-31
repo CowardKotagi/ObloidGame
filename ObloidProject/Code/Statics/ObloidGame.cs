@@ -16,7 +16,6 @@ public static class ObloidGame {
     // find ([^\r\n]+)\r?\n[ \t]*\{[ \t]*\r?\n
     // replace $1 {\n
     
-    
     public static void ChangeScene(Node inputNode, ColorRect fadeRectangle, string scenePath) {
         if (fadeRectangle == null) return;
         Fade(fadeRectangle, 0f, 1f, FADE_DURATION);
@@ -60,7 +59,6 @@ public static class ObloidGame {
         );
         if (rayResult.Count <= 0)
             return false;
-
         hitInfo.RawResult = rayResult;
         hitInfo.Position = (Vector3)rayResult["position"];
         hitInfo.Normal = (Vector3)rayResult["normal"];

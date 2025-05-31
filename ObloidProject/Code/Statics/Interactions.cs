@@ -35,6 +35,7 @@ public static class Interactions {
             Effects = new Action[] {
                 () => {
                     ObloidGame.ChangeScene(ObloidGame.CurrentScene, ObloidGame.CurrentScene.GetNode<ColorRect>("UI/BlackFade"), "res://Scenes/Levels/LevelTest.tscn");
+                    currentDay += 1;
                 },
             }
         },

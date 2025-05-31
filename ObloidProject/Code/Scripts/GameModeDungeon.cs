@@ -21,24 +21,26 @@ public partial class GameModeDungeon : Node3D {
     public float ProjectileSpeedModifier = 2f;
     public DialogueBox dialogueBox;
     public DonationUI donationUI;
-    public Label clockLabel;
+    public Clock clockUI;
     public Label rootsLabel;
 
     /* We may need to use _EnterTree() when _Ready() is not fast enough.
        That is to say, Ready executes in children first, then parents. So this "Ready" is the last thing to be ready.
        But Entertree executes before ready */
 
-    public override void _Ready(){
+    public override void _Ready() {
         Engine.MaxFps = 240;
         EnvironmentNode = this.HasNode("Environment") ? GetNode("Environment") : null;
         EntitiesNode = this.HasNode("Entities") ? GetNode("Entities") : null;
         UINode = this.HasNode("UI") ? GetNode("UI") : null;
         Sun = this.HasNode("Environment/DirectionalLight3D") ? GetNode<DirectionalLight3D>("Environment/DirectionalLight3D") : null;
-        clockLabel = this.HasNode("UI/Clock") ? GetNode<Label>("UI/Clock") : null;
         rootsLabel = this.HasNode("UI/Roots") ? GetNode<Label>("UI/Roots") : null;
         dialogueBox = this.HasNode("UI/DialogueBox") ? GetNode<DialogueBox>("UI/DialogueBox") : null;
         donationUI = this.HasNode("UI/DonationUI") ? GetNode<DonationUI>("UI/DonationUI") : null;
+        clockUI = this.HasNode("UI/Clock") ? GetNode<Clock>("UI/Clock") : null;
 
+        clockUI.DayCount.Text = currentDay.ToString();
+        ObloidGame.currentMinute = 0;
         ObloidGame.CurrentScene = this;
         Input.MouseMode = Input.MouseModeEnum.Captured;
         if (dialogueBox != null) { dialogueBox.Visible = false; }
@@ -51,6 +53,7 @@ public partial class GameModeDungeon : Node3D {
 
         ObloidGame.Fade(GetNode<ColorRect>("UI/BlackFade"), 1, 0, ObloidGame.FADE_DURATION);
         Players = GetEntitiesOfType<Player>(this);
+
     }
 
     public override void _PhysicsProcess(double delta) {
@@ -58,15 +61,18 @@ public partial class GameModeDungeon : Node3D {
             GD.Print("Menu");
             Input.MouseMode = Input.MouseMode == Input.MouseModeEnum.Captured ? Input.MouseModeEnum.Visible : Input.MouseModeEnum.Captured;
         }
+
         bool isUIValid = UINode != null;
-        bool canPlayerInput = canInput == true && Players != null && Players.Length > 0;
         if (isUIValid) {
             HandleTime(delta, GetTree());
-            UIProcedure(clockLabel, rootsLabel, dialogueBox, donationUI, delta);
+            UIProcedure(clockUI, rootsLabel, dialogueBox, donationUI, delta);
         }
+
+        bool canPlayerInput = canInput == true && Players != null && Players.Length > 0;
         if (canPlayerInput) {
             HandleInput(Players[0]);
         }
+
         Node3D[] projectiles = GetEntitiesOfType<Node3D>(this);
         for (int i = 0; i < projectiles.Length; i++) {
             if (projectiles[i].IsInGroup("Projectile")) {

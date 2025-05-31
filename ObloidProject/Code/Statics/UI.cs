@@ -3,9 +3,12 @@ using Godot;
 using static ObloidGame;
 
 public static class UI {
-    public static void UIProcedure(Label clockLabel, Label rootsLabel, DialogueBox dialogueBox, Control DonationUI, double delta) {
-        if (clockLabel != null) {
-            clockLabel.Text = "Day: " + ObloidGame.currentDay + "\nHour: " + ObloidGame.currentMinute;
+    public static void UIProcedure(Clock clockUI, Label rootsLabel, DialogueBox dialogueBox, DonationUI DonationUI, double delta) {
+        if (clockUI != null) {
+            //Vector2(0, 1080)
+            Vector2 startPosition = new Vector2(142, 0);
+            float timeFraction = (ObloidGame.currentMinute - 0) / (ObloidGame.MAXIMUM_MINUTES - 0);
+            clockUI.DayDial.Position = startPosition + (new Vector2(1080, 0) - startPosition) * timeFraction;
         }
 
         if (rootsLabel != null) {
@@ -17,7 +20,7 @@ public static class UI {
         }
 
         if (DonationUI != null) {
-            
+            GD.Print(DonationUI.Increase.TexturePressed);
         }
     }
     
