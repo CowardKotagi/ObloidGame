@@ -25,15 +25,6 @@ public static class Interactions {
                 },
             }
         },
-        new InteractionData {
-            npcName = "DungeonEntrance",
-            Effects = new Action[] {
-                () => {
-                    ObloidGame.ChangeScene(ObloidGame.CurrentScene, ObloidGame.CurrentScene.GetNode<ColorRect>("UI/BlackFade"), "res://Scenes/Levels/LevelTest.tscn");
-                    currentDay += 1;
-                },
-            }
-        },
     };
 
     public static InteractionData? GetInteraction(string npcName) {

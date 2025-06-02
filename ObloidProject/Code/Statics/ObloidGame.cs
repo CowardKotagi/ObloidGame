@@ -8,6 +8,7 @@ public static class ObloidGame {
     public const int MAXIMUM_DAYS = 30;
     public const int MAXIMUM_MINUTES = 5;
     public static int Roots = 10;
+    public static int donationBuffer;
     public static int Donations = 0;
     public const int FADE_DURATION = 1;
 	public static bool canInput = true;
@@ -23,7 +24,9 @@ public static class ObloidGame {
         Tween tween = fadeRectangle.GetTree().CreateTween();
         tween.TweenInterval(FADE_DURATION);
         tween.TweenCallback(Callable.From(() => {
-            inputNode.GetTree().ChangeSceneToFile(scenePath);
+            if (inputNode != null && inputNode.GetTree() != null) {
+                inputNode.GetTree().ChangeSceneToFile(scenePath);
+            }
         }));
     }
 

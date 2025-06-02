@@ -24,13 +24,16 @@ public static class UI {
     }
 
     public static void UpdateDonationUI(DonationUI DonationUI) {
-        if (Input.IsActionJustPressed("Select") && DonationUI.Increase.IsHovered()) {
+        // This is hack because godot doesn't give us a "IsPressed" bool :(
+        if (!Input.IsActionJustPressed("Select")) { return; }
+        Vector2 mousePosition = CurrentScene.GetViewport().GetMousePosition();
+        if (DonationUI.Increase.GetGlobalRect().HasPoint(mousePosition)) {
             DonationUI.GiveAmount.Text = Math.Min(DonationUI.GiveAmount.Text.ToInt() + 1, ObloidGame.Roots).ToString();
         }
-        if (Input.IsActionJustPressed("Select") && DonationUI.Decrease.IsHovered()) {
+        if (DonationUI.Decrease.GetGlobalRect().HasPoint(mousePosition)) {
             DonationUI.GiveAmount.Text = Math.Max(DonationUI.GiveAmount.Text.ToInt() - 1, 0).ToString();
         }
-        if (Input.IsActionJustPressed("Select") && DonationUI.DoneButton.IsHovered()) {
+        if (DonationUI.DoneButton.GetGlobalRect().HasPoint(mousePosition)) {
             if (DonationUI.GiveAmount.Text.ToInt() <= ObloidGame.Roots) {
                 Donations += DonationUI.GiveAmount.Text.ToInt();
                 ObloidGame.Roots -= DonationUI.GiveAmount.Text.ToInt();

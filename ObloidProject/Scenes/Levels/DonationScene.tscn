@@ -48,8 +48,6 @@ transform = Transform3D(-0.789149, 0.433013, -0.435596, 0.0473672, 0.75, 0.65974
 
 [node name="UI" type="Node" parent="."]
 
-[node name="RootsCounter" parent="UI" instance=ExtResource("2_6io76")]
-
 [node name="BlackTint" type="ColorRect" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -59,8 +57,6 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.266667)
 metadata/_edit_use_anchors_ = true
 
-[node name="DonationUI" parent="UI" instance=ExtResource("2_yba1w")]
-
 [node name="BlackFade" type="ColorRect" parent="UI"]
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,3 +65,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
+
+[node name="RootsCounter" parent="UI" instance=ExtResource("2_6io76")]
+
+[node name="DonationUI" parent="UI" instance=ExtResource("2_yba1w")]

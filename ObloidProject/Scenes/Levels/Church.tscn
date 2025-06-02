@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=4 uid="uid://cluovgx7edli1"]
+[gd_scene load_steps=16 format=4 uid="uid://cluovgx7edli1"]
 
 [ext_resource type="Texture2D" uid="uid://cqw6x8ygjkjbs" path="res://Resources/Textures/ROCK06.png" id="1_662kk"]
 [ext_resource type="Script" uid="uid://b4lrpbwwolsqo" path="res://Code/Scripts/GameModeDungeon.cs" id="1_o4pu0"]
-[ext_resource type="PackedScene" uid="uid://dla6sfohbwjy" path="res://Scenes/Entities/DungeonEntrance.tscn" id="3_o4pu0"]
 [ext_resource type="PackedScene" uid="uid://oerasy70vlod" path="res://Scenes/Player/PlayerCamera.tscn" id="3_r53cu"]
 [ext_resource type="PackedScene" uid="uid://b0152rdnmr8og" path="res://Scenes/Entities/NPCDonate.tscn" id="6_o4pu0"]
 [ext_resource type="PackedScene" uid="uid://b10x7fue57fka" path="res://Scenes/Player/Player.tscn" id="6_t1sbl"]
@@ -104,11 +103,8 @@ shape = SubResource("ConcavePolygonShape3D_5b7ld")
 
 [node name="Entities" type="Node" parent="."]
 
-[node name="DungeonEntrance" parent="Entities" instance=ExtResource("3_o4pu0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 1, -20)
-
 [node name="NPCDonate" parent="Entities" instance=ExtResource("6_o4pu0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1, -16)
+transform = Transform3D(-1.6, 0, -1.39876e-07, 0, 1.6, 0, 1.39876e-07, 0, -1.6, 0, 0.6, -16)
 
 [node name="Player" parent="Entities" instance=ExtResource("6_t1sbl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)

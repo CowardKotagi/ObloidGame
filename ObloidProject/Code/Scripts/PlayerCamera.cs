@@ -10,7 +10,7 @@ public partial class PlayerCamera : Node3D {
         new Vector3(0, 20, 20),
         new Vector3(0, 4, 8)
     ];
-    int cameraMode = 0;
+    int cameraMode = 1;
 
     public override void _Ready() {
         TopLevel = true;

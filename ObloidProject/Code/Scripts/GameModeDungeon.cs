@@ -87,10 +87,7 @@ public partial class GameModeDungeon : Node3D {
         for (int i = 0; i < Players.Length; i++) {
             Player Player = Players[i];
             if (Player.IsInsideTree() && Player.GlobalPosition.Y < -20f) {
-                GD.Print("RESET");
-                Player.GlobalPosition = Player.spawnPosition;
-                Camera.GlobalPosition = Player.spawnPosition;
-                Player.Velocity = Vector3.Zero;
+                ObloidGame.ChangeScene(ObloidGame.CurrentScene, ObloidGame.CurrentScene.GetNode<ColorRect>("UI/BlackFade"), "res://Scenes/Levels/Church.tscn");
             }
         }
         if (Enemies != null && Enemies.Length != 0) {

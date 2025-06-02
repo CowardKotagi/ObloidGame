@@ -1,14 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://b0152rdnmr8og"]
 
+[ext_resource type="PackedScene" uid="uid://ysr4rwcxa47a" path="res://Resources/Models/512.gltf" id="1_ytjrj"]
 [ext_resource type="PackedScene" uid="uid://dey3rtqlsm1gg" path="res://Scenes/Components/InteractableComponent.tscn" id="2_01rl8"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_4pc6x"]
 
 [node name="NPCDonate" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("CapsuleMesh_4pc6x")
+[node name="512" parent="." instance=ExtResource("1_ytjrj")]
 
 [node name="InteractableComponent" parent="." instance=ExtResource("2_01rl8")]
 NpcId = "NPCDonate"

@@ -251,70 +251,178 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 82.2314, 14.3906, 19.5014)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.678444, -1, 0.0619583)
 
 [node name="Spawner" type="Node3D" parent="Entities"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 182.823, 0, 1.05459)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 182.823, -3, 1.05459)
 
 [node name="Marker3D" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(-0.6, 0, 0, 0, 1, 0, 0, 0, -0.3, -68, 52, -45)
+transform = Transform3D(-0.6, 0, 0, 0, 1, 0, 0, 0, -0.3, -68, 5, -45)
 gizmo_extents = 3.81
 
 [node name="Marker3D2" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92, 52, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92, 5, 1)
 gizmo_extents = 3.81
 
 [node name="Marker3D3" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 52, -56)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26, 5, -56)
 gizmo_extents = 3.81
 
 [node name="Marker3D4" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62, 52, -58)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -62, 5, -58)
 gizmo_extents = 3.81
 
 [node name="Marker3D5" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 52, -48)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 5, -48)
 gizmo_extents = 3.81
 
 [node name="Marker3D6" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 52, 48)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32, 5, 48)
 gizmo_extents = 3.81
 
 [node name="Marker3D7" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115, 52, 83)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -115, 5, 83)
+gizmo_extents = 3.81
+
+[node name="Marker3D38" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -164, 5, 84)
+gizmo_extents = 3.81
+
+[node name="Marker3D39" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -145, 5, 88)
+gizmo_extents = 3.81
+
+[node name="Marker3D40" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -110, 5, 67)
+gizmo_extents = 3.81
+
+[node name="Marker3D41" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, -113.333, 5, 43.6667)
+gizmo_extents = 3.81
+
+[node name="Marker3D42" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, -122.333, 5, 33.6667)
+gizmo_extents = 3.81
+
+[node name="Marker3D43" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(2.98023e-08, 0, 1, 0, 1, 0, -1, 0, 2.98023e-08, -137.333, 5, 27.6667)
 gizmo_extents = 3.81
 
 [node name="Marker3D8" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 52, 37)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34, 5, 37)
 gizmo_extents = 3.81
 
 [node name="Marker3D9" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(-0.6, 0, 0, 0, 1, 0, 0, 0, -0.3, -68, 55, -76)
+transform = Transform3D(-0.6, 0, 0, 0, 1, 0, 0, 0, -0.3, -68, 8, -76)
 gizmo_extents = 3.81
 
 [node name="Marker3D10" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 52, -9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 5, -9)
 gizmo_extents = 3.81
 
 [node name="Marker3D11" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 52, 51)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 5, 51)
 gizmo_extents = 3.81
 
 [node name="Marker3D12" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 52, -44)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44, 5, -44)
 gizmo_extents = 3.81
 
 [node name="Marker3D13" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 52, -39)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 5, -39)
+gizmo_extents = 3.81
+
+[node name="Marker3D17" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 39, -131)
+gizmo_extents = 3.81
+
+[node name="Marker3D18" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 39, -127)
+gizmo_extents = 3.81
+
+[node name="Marker3D19" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 39, -122)
+gizmo_extents = 3.81
+
+[node name="Marker3D20" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 39, -174)
+gizmo_extents = 3.81
+
+[node name="Marker3D21" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51, 39, -170)
+gizmo_extents = 3.81
+
+[node name="Marker3D22" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 39, -165)
+gizmo_extents = 3.81
+
+[node name="Marker3D23" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 39, -135)
+gizmo_extents = 3.81
+
+[node name="Marker3D24" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 57, 39, -131)
+gizmo_extents = 3.81
+
+[node name="Marker3D25" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46, 39, -126)
+gizmo_extents = 3.81
+
+[node name="Marker3D26" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -125, 39, -130)
+gizmo_extents = 3.81
+
+[node name="Marker3D27" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -116, 39, -126)
+gizmo_extents = 3.81
+
+[node name="Marker3D28" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -127, 39, -121)
+gizmo_extents = 3.81
+
+[node name="Marker3D29" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42, 5, -112)
+gizmo_extents = 3.81
+
+[node name="Marker3D30" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33, 5, -108)
+gizmo_extents = 3.81
+
+[node name="Marker3D31" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -44, 5, -103)
+gizmo_extents = 3.81
+
+[node name="Marker3D32" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -296, 5, 53)
+gizmo_extents = 3.81
+
+[node name="Marker3D33" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -287, 5, 57)
+gizmo_extents = 3.81
+
+[node name="Marker3D34" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -298, 5, 62)
+gizmo_extents = 3.81
+
+[node name="Marker3D35" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -280, 5, 53)
+gizmo_extents = 3.81
+
+[node name="Marker3D36" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -271, 5, 57)
+gizmo_extents = 3.81
+
+[node name="Marker3D37" type="Marker3D" parent="Entities/Spawner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -282, 5, 62)
 gizmo_extents = 3.81
 
 [node name="Marker3D14" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -144, 52, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -144, 5, -3)
 gizmo_extents = 3.81
 
 [node name="Marker3D15" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 54, 64)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 7, 64)
 gizmo_extents = 3.81
 
 [node name="Marker3D16" type="Marker3D" parent="Entities/Spawner"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76, 52, 30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76, 5, 30)
 gizmo_extents = 3.81
 
 [node name="testcube" type="Node3D" parent="Entities"]
