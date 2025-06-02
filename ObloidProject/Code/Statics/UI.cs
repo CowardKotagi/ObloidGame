@@ -23,6 +23,26 @@ public static class UI {
         }
     }
 
+    public static void InitializeUI (Clock ClockUI, RootsCounter RootsCounter, DialogueBox DialogueBox, DonationUI DonationUI) {
+        if (ClockUI != null) {
+            ClockUI.DayCount.Text = currentDay.ToString();
+        }
+
+        if (RootsCounter != null) {
+        }
+
+        if (DialogueBox != null) {
+            DialogueBox.Visible = false; 
+        }
+
+        if (DonationUI != null) {
+            Input.MouseMode = Input.MouseModeEnum.Visible;
+            DonationUI.RootsAmount.Text = Roots.ToString();
+        } else {
+            Input.MouseMode = Input.MouseModeEnum.Captured;
+        }
+    }
+
     public static void UpdateDonationUI(DonationUI DonationUI) {
         // This is hack because godot doesn't give us a "IsPressed" bool :(
         if (!Input.IsActionJustPressed("Select")) { return; }

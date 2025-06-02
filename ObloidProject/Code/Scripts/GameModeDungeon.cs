@@ -44,13 +44,7 @@ public partial class GameModeDungeon : Node3D {
         clockUI = this.HasNode("UI/Clock") ? GetNode<Clock>("UI/Clock") : null;
         rootsCounter = this.HasNode("UI/RootsCounter") ? GetNode<RootsCounter>("UI/RootsCounter") : null;
 
-        if (clockUI != null) { clockUI.DayCount.Text = currentDay.ToString(); }
-        if (donationUI != null) {
-            Input.MouseMode = Input.MouseModeEnum.Visible;
-        } else {
-            Input.MouseMode = Input.MouseModeEnum.Captured;
-        }
-        if (dialogueBox != null) { dialogueBox.Visible = false; }
+        InitializeUI(clockUI, rootsCounter, dialogueBox, donationUI);
 
         PackedScene packedScene = GD.Load<PackedScene>("res://Scenes/Enemy/ObloidMandrake.tscn");
         if (this.HasNode("Entities/Spawner")) { SpawnEnemies(GetNode("Entities"), GetNode("Entities/Spawner"), packedScene); }
@@ -118,37 +112,10 @@ public partial class GameModeDungeon : Node3D {
         if (Input.IsActionJustPressed("Interact") && dialogueBox.Visible == false) {
             Node3D[] Entities = GetNode("Entities").GetChildren().OfType<Node3D>().ToArray();
             Node3D[] potentialTargets = GetObjectsWithinArea(Entities, Players[0].GlobalPosition - Players[0].GlobalTransform.Basis.Z * 2f, 4f, 4f);
-            foreach (Node3D potentialtarget in potentialTargets) { GD.Print(potentialtarget.Name); }
-            int count = 0;
-            for (int i = 0; i < potentialTargets.Length; i++)
-                if (potentialTargets[i].FindChild("InteractableComponent") != null)
-                    potentialTargets[count++] = potentialTargets[i];
-            Array.Resize(ref potentialTargets, count);
-
-            Node3D Closest = null;
-            float minimumDistance = float.MaxValue;
-            for (int i = 0; i < potentialTargets.Length; i++) {
-                float Distance = (potentialTargets[i].GlobalPosition - Players[0].GlobalPosition).Length();
-                if (Distance < minimumDistance) { minimumDistance = Distance; Closest = potentialTargets[i]; }
-            }
-            GD.Print("Closest interactable: ", Closest?.Name ?? "None");
-            if (Closest == null) { return; }
-            Node interactableNode = Closest.FindChild("InteractableComponent");
-            if (interactableNode is not InteractableComponent Interactable) { return; }
-                InteractionData? Interaction = Interactions.GetInteraction(Interactable.NpcId);
-                if (Interaction.HasValue) {
-                    int Index = Interactable.Index;
-                    Action[] Effects = Interaction.Value.Effects;
-                    if (Index >= 0 && Index < Effects.Length) {
-                        if (Effects != null && Index < Effects.Length && Effects[Index] != null) {
-                            Effects[Index]?.Invoke();
-                        }
-                        if (Index == Effects.Length - 1) {
-                            Interactable.Index = Effects.Length - 1;
-                        } else {
-                            Interactable.Index++;
-                        }
-                    }
+            potentialTargets = potentialTargets.Where(node => node.FindChild("InteractableComponent") != null).ToArray();
+            Node3D closestInteractable = FindClosest(potentialTargets, Players[0].GlobalPosition);
+            if (closestInteractable != null) {
+                TriggerInteraction(closestInteractable);
             }
         }
     }
@@ -172,5 +139,36 @@ public partial class GameModeDungeon : Node3D {
         dialogueBox.Speaker.Text = speaker;
         dialogueBox.Dialogue.Text = dialogue;
         dialogueBox.Visible = true;
+    }
+    private void TriggerInteraction(Node3D Closest) {
+        Node interactableNode = Closest.FindChild("InteractableComponent");
+        if (interactableNode is not InteractableComponent Interactable) { return; }
+        InteractionData? Interaction = Interactions.GetInteraction(Interactable.NpcId);
+        if (Interaction.HasValue) {
+            int Index = Interactable.Index;
+            Action[] Effects = Interaction.Value.Effects;
+            if (Index >= 0 && Index < Effects.Length) {
+                if (Effects != null && Index < Effects.Length && Effects[Index] != null) {
+                    Effects[Index].Invoke();
+                }
+                if (Index == Effects.Length - 1) {
+                    Interactable.Index = Effects.Length - 1;
+                } else {
+                    Interactable.Index++;
+                }
+            }
+        }
+    }
+    private Node3D FindClosest(Node3D[] nodes, Vector3 inputPosition) {
+        Node3D closest = null;
+        float minimumDistance = float.MaxValue;
+        foreach (Node3D node in nodes) {
+            float distance = (node.GlobalPosition - inputPosition).Length();
+            if (distance < minimumDistance) {
+                minimumDistance = distance;
+                closest = node;
+            }
+        }
+        return closest;
     }
 }

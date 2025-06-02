@@ -114,8 +114,7 @@ public static class ObloidGame {
     /// Rotates inputNode to face the given lookDirection smoothly. 
     /// Useful for players, enemies, or any Node3D that needs to face a direction.
     /// </summary>
-    public static void RotateTowards(Godot.Vector3 lookDirection, Node3D inputNode)
-    {
+    public static void RotateTowards(Godot.Vector3 lookDirection, Node3D inputNode) {
         if (lookDirection.Length() <= 0.0001f) { return; }
         float targetRotation = (float)System.Math.Atan2(lookDirection.X * -1, lookDirection.Z * -1);
         //inputNode.GlobalRotation = new Godot.Vector3(inputNode.Rotation.X, targetRotation, inputNode.Rotation.Z);

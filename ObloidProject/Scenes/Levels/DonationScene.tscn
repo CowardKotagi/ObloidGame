@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://dak8ef2p24s0a"]
+[gd_scene load_steps=8 format=3 uid="uid://dak8ef2p24s0a"]
 
 [ext_resource type="Script" uid="uid://b4lrpbwwolsqo" path="res://Code/Scripts/GameModeDungeon.cs" id="1_6io76"]
-[ext_resource type="PackedScene" uid="uid://c8a3forsawi6k" path="res://Scenes/UI/RootsCounter.tscn" id="2_6io76"]
+[ext_resource type="PackedScene" uid="uid://ysr4rwcxa47a" path="res://Resources/Models/512.gltf" id="2_6io76"]
 [ext_resource type="PackedScene" uid="uid://3qjablc440p2" path="res://Scenes/UI/DonationUI.tscn" id="2_yba1w"]
+[ext_resource type="Script" uid="uid://ctx8cuplwcujg" path="res://Code/Scripts/DonationCamera.cs" id="3_yba1w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_h8k8s"]
 sky_top_color = Color(0, 0, 0, 1)
@@ -26,25 +27,31 @@ script = ExtResource("1_6io76")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Environment"]
 environment = SubResource("Environment_vrrov")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Environment"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -6, 12, 0)
-light_indirect_energy = 7.087
-light_volumetric_fog_energy = 4.755
-shadow_enabled = true
-directional_shadow_mode = 1
-
 [node name="Geometry" type="Node" parent="."]
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Geometry"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -2, 0)
 size = Vector3(50, 4, 50)
 
-[node name="Camera3D" type="Camera3D" parent="Geometry"]
-transform = Transform3D(-0.789149, 0.433013, -0.435596, 0.0473672, 0.75, 0.65974, 0.612373, 0.5, -0.612373, -10, 11, -13)
-
 [node name="Props" type="Node" parent="."]
 
 [node name="Entities" type="Node" parent="."]
+
+[node name="512" parent="Entities" instance=ExtResource("2_6io76")]
+
+[node name="DonationCamera" type="Node3D" parent="Entities" node_paths=PackedStringArray("Pivot", "CameraRaw")]
+script = ExtResource("3_yba1w")
+Pivot = NodePath(".")
+CameraRaw = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="Entities/DonationCamera"]
+transform = Transform3D(-0.795754, -0.370891, 0.478765, 0.0473672, 0.75, 0.65974, -0.603765, 0.547668, -0.579247, 4, 6, -5)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Entities/DonationCamera/Camera3D"]
+transform = Transform3D(1, 0, -2.98023e-08, 0, 1, -2.98023e-08, 0, 0, 1, -4.00657, 1.44889, -1.35946)
+shadow_enabled = true
+spot_range = 35.0
+spot_angle = 66.0
 
 [node name="UI" type="Node" parent="."]
 
@@ -65,7 +72,5 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 metadata/_edit_use_anchors_ = true
-
-[node name="RootsCounter" parent="UI" instance=ExtResource("2_6io76")]
 
 [node name="DonationUI" parent="UI" instance=ExtResource("2_yba1w")]

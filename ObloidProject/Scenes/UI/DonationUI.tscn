@@ -1,17 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://3qjablc440p2"]
+[gd_scene load_steps=10 format=3 uid="uid://3qjablc440p2"]
 
 [ext_resource type="Script" uid="uid://bw1y7r7s5wdvy" path="res://Code/Datatypes/DonationUI.cs" id="1_kxxo1"]
 [ext_resource type="Theme" uid="uid://hs0lph5ymt1m" path="res://Resources/Theme.tres" id="2_vp56n"]
+[ext_resource type="Texture2D" uid="uid://d1s3akd1dudlj" path="res://Resources/Textures/DonationUILeftButtonHover.png" id="3_0dbui"]
+[ext_resource type="Texture2D" uid="uid://dlok1voy8d0ij" path="res://Resources/Textures/DonationUILeftButtonPressed.png" id="3_a322r"]
+[ext_resource type="Texture2D" uid="uid://dmgui2k8ytyty" path="res://Resources/Textures/DonationUILeftButton.png" id="3_d7l4n"]
+[ext_resource type="Texture2D" uid="uid://q8y46io67g5n" path="res://Resources/Textures/DonationUIConsole.png" id="3_xxjsk"]
+[ext_resource type="Texture2D" uid="uid://dglmgeep3qj2j" path="res://Resources/Textures/DonationUIRightButton.png" id="5_0q0nl"]
+[ext_resource type="Texture2D" uid="uid://cr8nwuyv3ji6l" path="res://Resources/Textures/DonationUIRightButtonHover.png" id="7_lh74l"]
+[ext_resource type="Texture2D" uid="uid://br75266j4mclq" path="res://Resources/Textures/DonationUIRightButtonPressed.png" id="8_l3jtp"]
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_scdg0"]
-width = 64
-height = 64
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_h8k8s"]
-width = 64
-height = 64
-
-[node name="DonationUI" type="Control" node_paths=PackedStringArray("SpeechLabel", "Increase", "Decrease", "GiveAmount", "DoneButton")]
+[node name="DonationUI" type="Control" node_paths=PackedStringArray("SpeechLabel", "Increase", "Decrease", "GiveAmount", "RootsAmount", "DoneButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -20,10 +19,89 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_kxxo1")
 SpeechLabel = NodePath("SpeechLabel")
-Increase = NodePath("VBoxContainer/Increase")
-Decrease = NodePath("VBoxContainer/Decrease")
-GiveAmount = NodePath("VBoxContainer/GiftLabel")
+Increase = NodePath("Increase")
+Decrease = NodePath("Decrease")
+GiveAmount = NodePath("TextureRect/GiftLabel")
+RootsAmount = NodePath("TextureRect/RootsLabel")
 DoneButton = NodePath("Done")
+
+[node name="Decrease" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 480.0
+offset_top = 528.0
+offset_right = 604.0
+offset_bottom = 623.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("3_d7l4n")
+texture_pressed = ExtResource("3_a322r")
+texture_hover = ExtResource("3_0dbui")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 2
+offset_left = 604.0
+offset_top = 451.0
+offset_right = 760.0
+offset_bottom = 699.0
+texture = ExtResource("3_xxjsk")
+
+[node name="GiftLabel" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -97.0
+offset_top = 44.0
+offset_right = 97.0
+offset_bottom = 65.0
+grow_horizontal = 2
+theme = ExtResource("2_vp56n")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+
+[node name="RootsLabel" type="Label" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -97.0
+offset_top = -109.0
+offset_right = 97.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("2_vp56n")
+theme_override_font_sizes/font_size = 64
+text = "0"
+horizontal_alignment = 1
+
+[node name="Increase" type="TextureButton" parent="."]
+layout_mode = 2
+offset_left = 760.0
+offset_top = 528.0
+offset_right = 886.0
+offset_bottom = 623.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("5_0q0nl")
+texture_pressed = ExtResource("8_l3jtp")
+texture_hover = ExtResource("7_lh74l")
+
+[node name="Done" type="Button" parent="."]
+layout_mode = 2
+offset_left = 626.0
+offset_top = 703.0
+offset_right = 740.0
+offset_bottom = 744.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme = ExtResource("2_vp56n")
+theme_override_font_sizes/font_size = 32
+text = "DONE"
 
 [node name="SpeechLabel" type="Label" parent="."]
 layout_mode = 1
@@ -38,54 +116,3 @@ grow_horizontal = 2
 theme = ExtResource("2_vp56n")
 theme_override_font_sizes/font_size = 32
 text = "How Much Will You Give?"
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -97.0
-offset_top = -15.5
-offset_right = 97.0
-offset_bottom = 15.5
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Increase" type="TextureButton" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-texture_normal = SubResource("NoiseTexture2D_scdg0")
-
-[node name="GiftLabel" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_vp56n")
-theme_override_font_sizes/font_size = 64
-text = "0"
-horizontal_alignment = 1
-
-[node name="Decrease" type="TextureButton" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-texture_normal = SubResource("NoiseTexture2D_h8k8s")
-
-[node name="Done" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -32.5
-offset_top = -26.0
-offset_right = 32.5
-offset_bottom = -186.0
-grow_horizontal = 2
-grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 8
-theme = ExtResource("2_vp56n")
-theme_override_font_sizes/font_size = 32
-text = "DONE"
